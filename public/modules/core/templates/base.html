@@ -1,0 +1,4 @@
+<navigation></navigation>
+<loading-indicator ng-if="(GETLoading || TRANSITIONLoading)" loading-style="linear" progress-mode="query" theme="md-accent hd-hue-3"></loading-indicator>
+<ui-view ng-if="(!GETLoading && !TRANSITIONLoading)" layout="column" layout-padding></ui-view>
+<footer></footer>

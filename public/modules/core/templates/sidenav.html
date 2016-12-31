@@ -1,0 +1,64 @@
+<!--
+  Sidenav Template
+
+  Component: Sidenav
+ -->
+<md-sidenav class="h-100" md-theme="sidenav" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-lg')" md-whiteframe="3">
+    <md-toolbar layout="row" layout-align="space-between center">
+        <div class="md-toolbar-tools" layout="row" layout-align-gt-lg="space-around center">
+            <p ui-sref="landing">CROPOLIS</p>
+        </div>
+        <md-button hide-gt-lg ng-click="$ctrl.closeSidenav()" class="md-accent">
+            <md-icon md-svg-src="navigation:ic_close_24px" class="md-icon-s32" aria-label="Navigation Menu"></md-icon>
+        </md-button>
+    </md-toolbar>
+    <md-content flex class="mar-top-5" layout="column" layout-align="space-between">
+        <!--
+        Does not Require Authentication
+      -->
+        <div ng-show="!$ctrl.isAuthenticated()">
+            <md-divider class="mar-bot-5" />
+            <div layout="row">
+                <md-button ui-sref="login" ui-sref-active="{ 'md-hue-3': 'login' }" ng-click="$ctrl.closeSidenav()" flex class="md-raised md-accent md-hue-1 vpad-10">Login</md-button>
+            </div>
+            <md-divider class="vmar-5" />
+            <div layout="row">
+                <md-button ui-sref="signup" ui-sref-active="{ 'md-hue-3': 'signup' }" ng-click="$ctrl.closeSidenav()" flex class="md-raised md-accent md-hue-1 vpad-10">Sign Up</md-button>
+            </div>
+            <md-divider class="vmar-5" />
+        </div>
+        <!--
+            Requires Authentication
+          -->
+        <div ng-show="$ctrl.isAuthenticated()">
+            <md-divider class="mar-bot-5" />
+            <div layout="row">
+                <md-button ui-sref="profile" ui-sref-active="{ 'md-hue-2': 'profile' }" ng-click="$ctrl.closeSidenav()" flex class="md-raised md-primary md-hue-1 vpad-10">{{ $ctrl.businessName }}</md-button>
+            </div>
+            <md-divider class="vmar-5" />
+            <div layout="row">
+                <md-button ui-sref="dashboard" ui-sref-active="{ 'md-hue-3': 'dashboard' }" ng-click="$ctrl.closeSidenav()" flex class="md-raised md-accent md-hue-1 vpad-10">Dashboard</md-button>
+            </div>
+            <md-divider class="vmar-5" />
+            <div layout="row">
+                <md-button ui-sref="orders" ui-sref-active="{ 'md-hue-3': 'orders' }" ng-click="$ctrl.closeSidenav()" flex class="md-raised md-accent md-hue-1 vpad-10">Orders</md-button>
+            </div>
+            <md-divider class="vmar-5" />
+            <div layout="row">
+                <md-button ui-sref="products" ui-sref-active="{ 'md-hue-3': 'products' }" ng-click="$ctrl.closeSidenav()" flex class="md-raised md-accent md-hue-1 vpad-10">Products</md-button>
+            </div>
+            <md-divider class="vmar-5" />
+            <div layout="row">
+                <md-button ui-sref="contacts" ui-sref-active="{ 'md-hue-3': 'contacts' }" ng-click="$ctrl.closeSidenav()" flex class="md-raised md-accent md-hue-1 vpad-10">Contacts</md-button>
+            </div>
+            <md-divider class="vmar-5" />
+            <div layout="row">
+                <md-button ui-sref="blast" ui-sref-active="{ 'md-hue-2': 'blast' }" ng-click="$ctrl.closeSidenav()" flex class="md-raised md-primary md-hue-1 vpad-10">Farm Blast</md-button>
+            </div>
+            <md-divider class="vmar-5" />
+        </div>
+        <div layout="row" layout-align="center" layout-margin>
+            <small>© 2016 - Cropolis LLC</small>
+        </div>
+    </md-content>
+</md-sidenav>

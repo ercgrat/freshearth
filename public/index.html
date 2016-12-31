@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="http://app.freshearth.io:8011/">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    
+    <link rel="stylesheet" href="lib/css/angular-material.min.css">
+    <link rel="stylesheet" href="lib/material_design_icons/material-design-icons-helper.css">
+    <link rel="stylesheet" href="lib/ngMessages/ngMessages.css">
+    
+    <!-- Fresh Earth CSS -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="modules/core/signup.css">
+    <link rel="stylesheet" href="modules/products/products.css">
+
+    <!-- Lodash -->
+    <script src="lodash/lodash.min.js"></script>
+
+    <!-- Angular -->
+    <script src="lib/js/angular.min.js"></script>
+    <script src="lib/js/angular-material.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Gudea" rel="stylesheet">
+
+    <!--  Angular UI-Router & Visualizer-->
+    <script src="//unpkg.com/angular-ui-router@1.0.0-beta.3/release/angular-ui-router.js"></script>
+    <script src="//unpkg.com/ui-router-visualizer@2.0.11/release/visualizer.min.js"></script>
+
+    <!-- Google Maps Javascript V3 -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDqVK76uKmyDcv5SOJIlHDNf9CagfEG5k"></script>
+
+    <!-- Your application bootstrap  -->
+    <script src="index.js"></script>
+
+    <!--  -->
+    <!-- CORE -->
+    <!--  -->
+
+    <!-- Factories -->
+    <script src="modules/core/services/cookieManager.factory.js"></script>
+    <script src="modules/core/services/toastNotification.factory.js"></script>
+    <script src="modules/core/services/lodash.factory.js"></script>
+    <script src="modules/core/services/userIdentification.factory.js"></script>
+    <script src="modules/core/services/googleMapManager.factory.js"></script>
+    <!--  -->
+
+    <!-- Runtime Functions -->
+    <script src="modules/core/services/transitionManager.run.js"></script>
+    <!--  -->
+
+    <!-- Services -->
+    <script src="modules/core/services/httpInterceptor.service.js"></script>
+    <!--  -->
+
+    <!-- Directives -->
+    <script src="modules/core/directives/emailValidator.directive.js"></script>
+    <script src="modules/core/directives/passwordValidator.directive.js"></script>
+    <script src="modules/core/directives/businessNameValidator.directive.js"></script>
+    <script src="modules/core/directives/phoneValidator.directive.js"></script>
+    <script src="modules/core/directives/googleMap.directive.js"></script>
+    <script src="modules/core/directives/loadingIndicator.directive.js"></script>
+    <!--  -->
+
+    <!-- Components -->
+    <script src="modules/core/components/main.js"></script>
+    <script src="modules/core/components/base.js"></script>
+    <script src="modules/core/components/auth.js"></script>
+    <script src="modules/core/components/login.js"></script>
+    <script src="modules/core/components/landing.js"></script>
+    <script src="modules/core/components/navigation.js"></script>
+    <script src="modules/core/components/sidenav.js"></script>
+    <!-- Error -->
+    <script src="modules/core/components/error/error.js"></script>
+    <script src="modules/core/components/error/401.js"></script>
+    <script src="modules/core/components/error/404.js"></script>
+    <!-- Signup -->
+    <script src="modules/core/components/signup/signup.js"></script>
+    <script src="modules/core/components/signup/account.signup.js"></script>
+    <script src="modules/core/components/signup/type.signup.js"></script>
+    <script src="modules/core/components/signup/name.signup.js"></script>
+    <script src="modules/core/components/signup/headline.signup.js"></script>
+    <script src="modules/core/components/signup/address.signup.js"></script>
+    <script src="modules/core/components/signup/phone.signup.js"></script>
+    <script src="modules/core/components/signup/review.signup.js"></script>
+    <!--  -->
+
+    <!--  -->
+    <!-- DASHBOARD -->
+    <!--  -->
+
+    <!-- Factories -->
+    <!--  -->
+
+    <!-- Services -->
+    <!--  -->
+
+    <!-- Directives -->
+    <script src="modules/dashboard/directives/dashboardItemToolbarMenu.js"></script>
+    <!--  -->
+
+    <!-- Components -->
+    <script src="modules/dashboard/components/dashboard.js"></script>
+    <script src="modules/dashboard/components/businessChecklist/businessChecklist.js"></script>
+    <script src="modules/dashboard/components/businessChecklist/businessChecklistItem.js"></script>
+    <script src="modules/dashboard/components/alerts/alertsList.js"></script>
+    <script src="modules/dashboard/components/alerts/alertsListItem.js"></script>
+    <script src="modules/dashboard/components/blastStats/blastStats.js"></script>
+    <!--  -->
+
+    <!--  -->
+    <!-- ORDERS -->
+    <!--  -->
+
+    <!-- Factories -->
+    <!--  -->
+
+    <!-- Services -->
+    <!--  -->
+
+    <!-- Directives -->
+    <!--  -->
+
+    <!-- Components -->
+    <script src="modules/orders/components/orders.js"></script>
+    <!--  -->
+
+    <!--  -->
+    <!-- PRODUCTS -->
+    <!--  -->
+
+    <!-- Factories -->
+    <script src="modules/products/services/productManager.factory.js"></script>
+    <!--  -->
+
+    <!-- Services -->
+    <!--  -->
+
+    <!-- Directives -->
+    <script src="modules/products/directives/priceValidator.directive.js"></script>
+    <script src="modules/products/directives/quantityValidator.directive.js"></script>
+    <script src="modules/products/directives/productNameValidator.directive.js"></script>
+    <!--  -->
+
+    <!-- Components -->
+    <script src="modules/products/components/product.js"></script>
+    <script src="modules/products/components/products.js"></script>
+    <script src="modules/products/components/productCategory.js"></script>
+    <script src="modules/products/components/productCategoryTitle.js"></script>
+    <!--  -->
+
+</head>
+
+<body ng-app="Cropolis" flex layout="row">
+    <base flex layout="column"></base>
+</body>
+
+</html>

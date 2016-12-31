@@ -1,0 +1,24 @@
+<!--
+  Navigation Template
+
+  Component: Navigation
+ -->
+<md-toolbar>
+    <div layout-align="space-between center" layout-align-gt-lg="end center" class="md-toolbar-tools">
+        <md-button ng-click="$ctrl.toggleSidenav()" hide-gt-lg>
+            <md-icon md-svg-src="action:ic_reorder_24px" class="md-icon-s32" aria-label="Navigation Menu"></md-icon>
+        </md-button>
+        <h2 hide-gt-lg>
+          <span ng-if="$ctrl.userIdentification.isAuthenticated()" ui-sref="dashboard">CROPOLIS</span>
+          <span ng-if="!$ctrl.userIdentification.isAuthenticated()" ui-sref="landing">CROPOLIS</span>
+        </h2>
+        <md-button ui-sref="login" ng-if="!$ctrl.userIdentification.isAuthenticated()" class="hpad-10">
+            <md-icon md-svg-src="action:ic_face_24px" aria-label="Login"></md-icon>
+            <span class="hmar-5">LOGIN</span>
+        </md-button>
+        <md-button ng-click="$ctrl.logout()" ng-if="$ctrl.userIdentification.isAuthenticated()" class="hpad-10">
+            <md-icon md-svg-src="action:ic_face_24px" aria-label="Login"></md-icon>
+            <span class="hmar-5">LOGOUT</span>
+        </md-button>
+    </div>
+</md-toolbar>

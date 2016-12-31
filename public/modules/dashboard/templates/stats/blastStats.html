@@ -1,0 +1,28 @@
+<div ng-hide="$ctrl.itemToolbarMenu.hidden" md-whiteframe="1">
+    <md-toolbar class="md-hue-2" layout="row" md-whiteframe="2">
+        <div class="md-toolbar-tools">
+            <p ng-hide="$ctrl.itemToolbarMenu.hideLabel">Email Statistics</p>
+            <span flex></span>
+            <dashboard-item-toolbar-menu item-toolbar-menu="$ctrl.itemToolbarMenu" hide-label-size="'xs'" />
+        </div>
+    </md-toolbar>
+    <md-content ng-hide="$ctrl.itemToolbarMenu.minimized" flex layout="column">
+        <md-list>
+            <md-list-item>
+                <md-icon class="md-avatar" md-svg-src="communication:ic_mail_outline_24px" aria-label="Opened Mail"></md-icon>
+                <div class="md-list-item-text" layout="column">
+                    <h3>Opened Mail Items</h3>
+                </div>
+            </md-list-item>
+            <md-list-item>
+                <md-icon class="md-avatar" md-svg-src="communication:ic_email_24px" aria-label="Sent Mail"></md-icon>
+                <div class="md-list-item-text" layout="column">
+                    <h3>Sent Mail Items</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+    <div ng-hide="$ctrl.itemToolbarMenu.minimized" flex layout="row" layout-align="end">
+        <md-subheader hide show-gt-md>Updated <b>3:14pm</b></md-subheader>
+    </div>
+</div>

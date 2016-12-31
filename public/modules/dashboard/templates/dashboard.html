@@ -1,0 +1,28 @@
+<!--
+    Dashboard
+-->
+<div flex layout="column" layout-gt-sm="row" layout-align="space-between" layout-padding layout-wrap>
+    <!--
+          Dashboard Components
+
+          All Components need to have:
+            flex
+            flex-gt-sm
+            flex-order
+
+          Flex-Order should be configurable by the user in the future to allow a re-organization
+            of the Dashboard without much difficulty
+
+          Each Dashboard element could have a FAB button on the top-right (replacing the hide/show button)
+            that is an md-speed-dial and has options to 'show', 'hide', 'set priority', etc.
+
+          ***
+          Future Consideration
+          ***
+            Implement md-grid-list where each of the Dashboard Elements are a grid element. It would allow
+              responsive tetris-style layouts of the elements
+        -->
+    <business-checklist flex flex-gt-sm="50" flex-order="1"></business-checklist>
+    <alerts-list flex flex-gt-sm="50" flex-order="2"></alerts-list>
+    <blast-stats flex flex-gt-sm="50" flex-order="3"></blast-stats>
+</div>

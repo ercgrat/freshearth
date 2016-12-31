@@ -1,0 +1,21 @@
+{
+  "name": "cropolis-server",
+  "version": "1.0.0",
+  "description": "NodeJS/Express web content server.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular-cookies": "^1.5.9",
+    "angular-ui-router": "^0.3.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.17.0",
+    "material-design-icons": "^3.0.1",
+    "mysql": "^2.11.1",
+    "request": "^2.76.0"
+  }
+}

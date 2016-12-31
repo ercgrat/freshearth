@@ -1,0 +1,50 @@
+<div ng-hide="$ctrl.itemToolbarMenu.hidden" md-whiteframe="1">
+    <md-toolbar class="md-hue-2" layout="row" md-whiteframe="2">
+        <div class="md-toolbar-tools">
+            <p ng-hide="$ctrl.itemToolbarMenu.hideLabel">Email Statistics</p>
+            <span flex></span>
+            <dashboard-item-toolbar-menu item-toolbar-menu="$ctrl.itemToolbarMenu" hide-label-size="'xs'" />
+        </div>
+    </md-toolbar>
+    <md-content ng-hide="$ctrl.itemToolbarMenu.minimized" flex layout="column">
+        <md-tabs md-dynamic-height md-stretch-tabs="always" md-border-bottom>
+            <md-tab label="orders">
+                <md-list flex>
+                    <md-list-item ng-repeat="blast in $ctrl.blastStats | filter: { type: 'order' } | orderBy: '-date'" class="md-3-line" ui-sref="blast({ id: blast.id })">
+                        <md-icon class="md-avatar" md-svg-src="action:ic_shopping_cart_24px" aria-label="Order"></md-icon>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ blast.title }}</h3>
+                            <p>{{ $ctrl.parseDate(blast.date) }}</p>
+                            <div layout="row" layout-align="space-between">
+                                <h4 flex>SENT: <b>{{ blast.sent }}</b></h4>
+                                <h4 flex>OPENED: <b>{{ blast.opened }}</b></h4>
+                                <h4 flex>ORDERS: <b>{{ blast.orders }}</b></h4>
+                            </div>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-tab>
+            <md-tab label="announcements">
+                <md-list flex>
+                    <md-list-item ng-repeat="blast in $ctrl.blastStats | filter: { type: 'info' } | orderBy: '-date'" class="md-3-line" ui-sref="blast({ id: blast.id })">
+                        <md-icon class="md-avatar" md-svg-src="action:ic_info_24px" aria-label="Announcement"></md-icon>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ blast.title }}</h3>
+                            <p>{{ $ctrl.parseDate(blast.date) }}</p>
+                            <div layout="row" layout-align="space-between">
+                                <h4 flex>SENT: <b>{{ blast.sent }}</b></h4>
+                                <h4 flex>OPENED: <b>{{ blast.opened }}</b></h4>
+                                <span flex />
+                            </div>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+    <div ng-hide="$ctrl.itemToolbarMenu.minimized" flex layout="row" layout-align="end">
+        <md-subheader hide show-gt-md>Updated <b>3:14pm</b></md-subheader>
+    </div>
+</div>

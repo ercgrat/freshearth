@@ -1,0 +1,21 @@
+<md-card class="productCategory">
+    <md-card-title>
+        <md-card-title-text>
+            <product-category-title category="$ctrl.category" delete-category="$ctrl.deleteCategory($ctrl.category)" add-category="$ctrl.addCategory($ctrl.category)" />
+        </md-card-title-text>
+    </md-card-title>
+    <md-divider></md-divider>
+    <md-card-content ng-show="$ctrl.category.name.length > 0" layout="column">
+		<div class="titleRow" layout="row" flex>
+			<span flex>Name</span>
+			<span flex>Quantity</span>
+			<span flex>Unit</span>
+			<span flex>Price</span>
+			<span flex>Available</span>
+			<div style="width:80px" flex="nogrow"></div>
+		</div>
+        <product ng-repeat="product in $ctrl.products | orderBy: 'name' track by product.id" flex product="product" delete-product="$ctrl.deleteProduct(product)" ></product>
+        <product ng-if="$ctrl.newProduct != null" flex product="$ctrl.newProduct" delete-product="$ctrl.deleteProduct()" add-product="$ctrl.addProduct($ctrl.newProduct)" ></product>
+		<md-button class="addProductButton md-primary" ng-click="$ctrl.createProduct()" flex>Add Product</md-button>
+    </md-card-content>
+</md-card>

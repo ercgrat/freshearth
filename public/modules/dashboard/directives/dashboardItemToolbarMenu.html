@@ -1,0 +1,41 @@
+<md-fab-speed-dial flex ng-cloak md-open="$ctrl.isOpen" md-direction="left" class="md-scale">
+    <md-fab-trigger layout="column" layout-align="center center">
+        <!-- FAB Menu Button -->
+        <md-button ng-click="$ctrl.toggleOpen()" aria-label="Open Menu" class="md-fab md-mini md-primary md-hue-3">
+            <md-tooltip md-direction="top" md-visible="tooltipVisible">Menu</md-tooltip>
+            <md-icon md-svg-src="navigation:ic_menu_24px" aria-label="Open Menu"></md-icon>
+        </md-button>
+    </md-fab-trigger>
+
+    <md-fab-actions ng-hide="$ctrl.hideLabel() && !$ctrl.isOpen">
+        <!-- Increase Priority of Parent Component -->
+        <md-button ng-click="$ctrl.increasePriority()" aria-label="Increase Priority" class="md-icon-button">
+            <md-tooltip md-direction="top" md-autohide="true">Move Up</md-tooltip>
+            <md-icon md-svg-src="navigation:ic_expand_less_24px" aria-label="Increase"></md-icon>
+        </md-button>
+        <!-- Decrease Priority of Parent Component -->
+        <md-button ng-click="$ctrl.decreasePriority()" aria-label="Decrease Priority" class="md-icon-button">
+            <md-tooltip md-direction="top" md-autohide="true">Move Down</md-tooltip>
+            <md-icon md-svg-src="navigation:ic_expand_more_24px" aria-label="Decrease"></md-icon>
+        </md-button>
+        <!-- Toggle Content Visibility of Parent Component -->
+        <md-button ng-click="$ctrl.minMaxToggle()" aria-label="Minimize" class="md-icon-button">
+            <!-- Content is Visible -->
+            <div ng-hide="$ctrl.itemToolbarMenu.minimized">
+                <md-tooltip md-direction="top" md-autohide="true">Minimize</md-tooltip>
+                <md-icon md-svg-src="action:ic_visibility_off_24px" aria-label="Minimize"></md-icon>
+            </div>
+            <!-- Content is Hidden -->
+            <div ng-hide="!$ctrl.itemToolbarMenu.minimized">
+                <md-tooltip md-direction="top" md-autohide="true">Maximize</md-tooltip>
+                <md-icon md-svg-src="action:ic_visibility_24px" aria-label="Maximize"></md-icon>
+            </div>
+        </md-button>
+        <!-- Hide Parent Component -->
+        <md-button ng-click="$ctrl.hide()" aria-label="Remove" class="md-warn md-icon-button">
+            <md-tooltip md-direction="top" md-autohide="true">Remove</md-tooltip>
+            <md-icon md-svg-src="content:ic_clear_24px" aria-label="Remove"></md-icon>
+        </md-button>
+        <!-- -->
+    </md-fab-actions>
+</md-fab-speed-dial>

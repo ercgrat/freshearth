@@ -1,0 +1,23 @@
+.md-icon-s64 {
+    width: 64px;
+    height: 64px;
+}
+
+.md-icon-s48 {
+    width: 48px;
+    height: 48px;
+}
+
+.md-icon-s32 {
+    width: 32px;
+    height: 32px;
+}
+
+.md-icon-s16 {
+    width: 16px;
+    height: 16px;
+}
+
+.md-icon-pad {
+  padding: 0 5px 0 5px;
+}

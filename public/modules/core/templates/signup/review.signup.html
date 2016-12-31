@@ -1,0 +1,63 @@
+<!--
+  Review.Signup Template
+
+  Parent Component: Signup
+  Component: Review.Signup
+
+  Tabindex: ?-?
+ -->
+<div>
+    <div layout="column">
+        <div layout="column">
+            <md-toolbar class="md-primary md-hue-3" md-whiteframe="1">
+                <div class="md-toolbar-tools" layout="row">
+                    <h2>{{ $ctrl.signupCredentials.businessName }}</h2>
+                    <span flex></span>
+                    <h2><b>{{ $ctrl.signupCredentials.businessType | uppercase }}</b></h2>
+                </div>
+            </md-toolbar>
+            <md-content layout="column" layout-gt-sm="row" layout-padding>
+                <div flex flex-order="1" layout="column" layout-padding class="signup-review">
+                    <div flex="nogrow" layout="column" layout-gt-xs="row">
+                        <p flex-order="1"><b>Owner:</b></p>
+                        <p flex-order="2">{{ $ctrl.signupCredentials.firstName }} {{ $ctrl.signupCredentials.lastName }}</p>
+                    </div>
+                    <div flex="nogrow" layout="column" layout-gt-xs="row">
+                        <p flex-order="1"><b>Email Address:</b></p>
+                        <p flex-order="2">{{ $ctrl.signupCredentials.email }}</p>
+                    </div>
+                    <div flex="nogrow" layout="column" layout-gt-xs="row">
+                        <p flex-order="1"><b>Password:</b></p>
+                        <p flex-order="2">{{ $ctrl.signupCredentials.password | passwordFilter }}</p>
+                    </div>
+                    <span flex></span>
+                    <div flex="nogrow" layout="column" layout-gt-xs="row">
+                        <p flex-order="1"><b>Business Name:</b></p>
+                        <p flex-order="2">{{ $ctrl.signupCredentials.businessName }}</p>
+                    </div>
+                    <div flex="nogrow" layout="column" layout-gt-xs="row">
+                        <p flex-order="1"><b>Phone Number:</b></p>
+                        <p flex-order="2">{{ $ctrl.signupCredentials.businessPhone | phoneFilter }}</p>
+                    </div>
+                    <div flex="grow" layout="column">
+                        <p flex-order="1"><b>Business Headline:</b></p>
+                        <p flex-order="2">{{ $ctrl.signupCredentials.businessHeadline }}</p>
+                    </div>
+                </div>
+                <div flex flex-order="2" layout="column" layout-padding class="signup-review">
+                    <google-map ng-model="$ctrl.signupCredentials.businessAddress" control="mapControl" flex="grow" md-whiteframe="1"></google-map>
+                </div>
+            </md-content>
+        </div>
+    </div>
+</div>
+<div layout="row" layout-align="center space-between" layout-margin>
+    <md-button flex="20" class="md-flat md-accent md-hue-1" ng-click="$ctrl.signupBackward()">
+        <md-icon md-svg-src="hardware:ic_keyboard_arrow_left_24px" class="md-icon-s48" tabindex="21" aria-label="Back Page"></md-icon>
+    </md-button>
+    <span flex></span>
+    <md-button flex="20" class="md-raised md-primary md-hue-1" ng-click="$ctrl.submit()" tabindex="6" aria-label="Submit">
+        <!-- <md-icon md-svg-src="content:ic_send_24px" class="md-icon-s36"></md-icon> -->
+        SIGNUP
+    </md-button>
+</div>

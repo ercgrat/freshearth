@@ -1,0 +1,54 @@
+#products md-card-title {
+    padding: 6px 6px 6px 12px;
+}
+
+#products button.md-icon-button {
+	margin: 0px;
+}
+
+.productCategory > md-card-content {
+	padding: 6px 0px;
+}
+
+.productCategory .addProductButton {
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+.productCategory .titleRow {
+	color: gray;
+	font-size: 0.8em;
+	text-transform: capitalize;
+}
+
+.productCategoryTitle {
+    width: 100%;
+}
+
+.productCategoryTitle h3 {
+    height: 24px;
+    margin: 0 auto;
+}
+
+.productCategoryTitle md-input-container {
+    width: calc(100% - 18px);
+    height: 40px;
+    margin: 18px 0px 0px 0px;
+}
+
+.product form {
+	padding: 16px;
+}
+
+.product .productDisplay md-switch {
+	margin: 0px;
+}
+
+.product .productDisplay, .productCategory .titleRow {
+	padding: 0px 6px 0px 16px;
+}
+
+.product .productDisplay .quantityAvailable {
+	text-align: right;
+	padding-right: 6px;
+}

@@ -1,0 +1,21 @@
+<div class="productCategoryTitle" layout="row" layout-align="space-between center">
+    <form name="$ctrl.categoryTitleForm" flex>
+        <h3 ng-show="!$ctrl.editing">
+            {{$ctrl.category.name}}
+        </h3>
+        <md-input-container ng-show="$ctrl.editing">
+            <label>Category Name</label>
+            <input required ng-model="$ctrl.category.name" ng-maxlength="45" ng-model-options="{ updateOn: 'blur' }" ng-blur="$ctrl.disableEditing()" name="name">
+            <div ng-messages="$ctrl.categoryTitleForm.name.$error">
+                <div ng-message="required">Category is required</div>
+                <div ng-message="maxlength">Category must be less than 45 characters</div>
+            </div>
+        </md-input-container>
+    </form>
+    <md-button flex="nogrow" ng-show="!$ctrl.editing" ng-click="$ctrl.enableEditing()" class="md-primary md-hue-3 md-icon-button">
+        <md-icon md-svg-src="editor:ic_mode_edit_24px" aria-label="Edit Category Title" />
+    </md-button>
+    <md-button flex="nogrow" ng-show="!$ctrl.editing" ng-click="$ctrl.deleteCategory()" class="md-icon-button">
+        <md-icon md-svg-src="action:ic_delete_24px" aria-label="Delete Category" />
+    </md-button>
+</div>

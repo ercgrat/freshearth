@@ -1,0 +1,46 @@
+<!--
+  Login Template
+
+  Parent Component: Main
+  Component: Login
+ -->
+<div flex="90" flex-offset="5" flex-gt-md="80" flex-offset-gt-md="10" md-whiteframe="2">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools" layout-align="space-between center">
+            <h2>Login</h2>
+            <p md-button aria-label="Signup" ui-sref="signup">SIGNUP</p>
+        </div>
+    </md-toolbar>
+    <md-content layout-margin>
+        <form novalidate name="$ctrl.loginForm">
+            <div layout="column">
+                <md-input-container>
+                    <label>Email Address</label>
+                    <input required email-validator login ng-model="$ctrl.loginCredentials.email" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="email" name="email" tabindex="1" aria-label="Email Address" />
+                    <div ng-messages="$ctrl.loginForm.email.$error">
+                        <div ng-message="required">Email Address is required</div>
+                        <div ng-message="email">Email Address is not formatted correctly</div>
+                        <div ng-message="emailValid">Email Address is invalid!</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Password</label>
+                    <input required password-validator login ng-model="$ctrl.loginCredentials.password" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="password" name="password" tabindex="2" aria-label="Password" />
+                    <div ng-messages="$ctrl.loginForm.password.$error">
+                        <div ng-message="required">Password is required</div>
+                        <div ng-message="passwordValid">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
+                    </div>
+                </md-input-container>
+                <div layout="row" layout-align="center">
+                    <md-switch ng-model="$ctrl.loginCredentials.remember" aria-label="Remember Me" class="md-accent md-hue-2 mar-top-0">
+                        Stay Logged In
+                    </md-switch>
+                </div>
+                <div layout="row" layout-align="center">
+                    <md-button flex ui-sref="landing" class="md-flat md-warn md-hue-2" tabindex="4">Cancel</md-button>
+                    <md-button flex class="md-raised md-primary md-hue-2" ng-click="$ctrl.submit()" ng-disabled="$ctrl.loginForm.$invalid || $ctrl.loginForm.$pending" tabindex="3">Submit</md-button>
+                </div>
+            </div>
+        </form>
+    </md-content>
+</div>

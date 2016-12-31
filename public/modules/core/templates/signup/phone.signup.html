@@ -1,0 +1,32 @@
+<!--
+  Phone.Signup Template
+
+  Parent Component: Signup
+  Component: Phone.Signup
+
+  Tabindex: 22-24
+ -->
+<form name="$ctrl.signupForm" novalidate layout-padding>
+    <div layout="column">
+        <md-input-container>
+            <label>Business Phone</label>
+            <input required phone-validator ng-model="$ctrl.signupCredentials.businessPhone" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="text" name="businessPhone" tabindex="22" aria-label="Business Phone" />
+            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.businessPhone.$untouched || $ctrl.signupForm.businessPhone.$valid">
+                <div class="ng-message-hint">{{ $ctrl.signupValidators.businessPhone.hint }}</div>
+            </div>
+            <div ng-messages="$ctrl.signupForm.businessPhone.$error">
+                <div ng-message="required">Business Phone is required</div>
+                <div ng-message="numberValidator">Business Phone is invalid!</div>
+            </div>
+        </md-input-container>
+    </div>
+</form>
+<div layout="row" layout-align="center space-between" layout-margin>
+    <md-button flex="20" class="md-flat md-accent md-hue-1" ng-click="$ctrl.signupBackward()">
+        <md-icon md-svg-src="hardware:ic_keyboard_arrow_left_24px" class="md-icon-s48" tabindex="24" aria-label="Back Page"></md-icon>
+    </md-button>
+    <span flex></span>
+    <md-button flex="20" class="md-raised md-accent md-hue-1" ng-click="$ctrl.signupForward()" tabindex="23" ng-disabled="$ctrl.signupForm.$invalid || $ctrl.signupForm.$pending">
+        <md-icon md-svg-src="hardware:ic_keyboard_arrow_right_24px" class="md-icon-s48" aria-label="Next Page"></md-icon>
+    </md-button>
+</div>

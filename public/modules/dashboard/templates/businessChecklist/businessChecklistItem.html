@@ -1,0 +1,12 @@
+<div flex layout="row">
+    <md-button flex="none" ng-show="$ctrl.task.priority == 0" ui-sref="{{ $ctrl.task.url }}" class="md-fab md-mini md-accent md-hue-1" aria-label="{{ $ctrl.task.title }}">
+        <md-icon md-svg-src="toggle:ic_check_box_outline_blank_24px" aria-label="{{ $ctrl.task.title }}"></md-icon>
+    </md-button>
+    <md-button flex="none" ng-show="$ctrl.task.priority == 1" ui-sref="{{ $ctrl.task.url }}" class="md-fab md-mini md-accent md-hue-2" aria-label="{{ $ctrl.task.title }}">
+        <md-icon md-svg-src="toggle:ic_check_box_outline_blank_24px" aria-label="{{ $ctrl.task.title }}"></md-icon>
+    </md-button>
+    <md-button flex="none" ng-show="$ctrl.task.priority == 2" ui-sref="{{ $ctrl.task.url }}" class="md-fab md-mini md-accent md-hue-3" aria-label="{{ $ctrl.task.title }}">
+        <md-icon md-svg-src="toggle:ic_check_box_outline_blank_24px" aria-label="{{ $ctrl.task.title }}"></md-icon>
+    </md-button>
+    <p flex>{{ $ctrl.task.title }}</p>
+</div>

@@ -1,0 +1,15 @@
+<div ng-hide="$ctrl.itemToolbarMenu.hidden" md-whiteframe="1">
+    <md-toolbar class="md-hue-1" layout="row" md-whiteframe="2">
+        <div class="md-toolbar-tools">
+            <p ng-hide="$ctrl.itemToolbarMenu.hideLabel">New Business Checklist</p>
+            <span flex></span>
+            <dashboard-item-toolbar-menu item-toolbar-menu="$ctrl.itemToolbarMenu" hide-label-size="'xs'"/>
+        </div>
+    </md-toolbar>
+    <md-content ng-hide="$ctrl.itemToolbarMenu.minimized" flex layout-gt-md="row" layout="column" layout-wrap>
+        <business-checklist-item ng-repeat="task in $ctrl.tasks | orderBy: '-priority'" task="task" flex="grow" flex-gt-sm="50" />
+    </md-content>
+    <md-content ng-hide="$ctrl.itemToolbarMenu.minimized" flex layout="row" layout-align="end" class="md-hue-1">
+        <md-subheader hide show-gt-md>Sorted by <b>Highest Priority</b></md-subheader>
+    </md-content>
+</div>

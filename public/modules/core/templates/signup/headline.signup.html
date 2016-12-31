@@ -1,0 +1,34 @@
+<!--
+  Headline.Signup Template
+
+  Parent Component: Signup
+  Component: Headline.Signup
+
+  Tabindex: 13-15
+ -->
+<form name="$ctrl.signupForm" novalidate layout-padding>
+    <div layout="column">
+        <md-input-container>
+            <label>Business Headline</label>
+            <textarea md-no-resize required ng-minlength="$ctrl.signupValidators.businessHeadline.minlength" ng-maxlength="$ctrl.signupValidators.businessHeadline.maxlength" ng-model="$ctrl.signupCredentials.businessHeadline"
+                type="text" name="businessHeadline" tabindex="13" aria-label="Business Headline"></textarea>
+            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.businessHeadline.$untouched || $ctrl.signupForm.businessHeadline.$valid">
+                <div class="ng-message-hint">{{ $ctrl.signupValidators.businessHeadline.hint }}</div>
+            </div>
+            <div ng-messages="$ctrl.signupForm.businessHeadline.$error">
+                <div ng-message="required">Business Headline is required</div>
+                <div ng-message="minlength">Business Headline must be at least {{ $ctrl.signupValidators.businessHeadline.minlength }} characters</div>
+                <div ng-message="maxlength">Business Headline must be less than {{ $ctrl.signupValidators.businessHeadline.maxlength }} characters</div>
+            </div>
+        </md-input-container>
+    </div>
+</form>
+<div layout="row" layout-align="center space-between" layout-margin>
+    <md-button flex="20" class="md-flat md-accent md-hue-1" ng-click="$ctrl.signupBackward()">
+        <md-icon md-svg-src="hardware:ic_keyboard_arrow_left_24px" class="md-icon-s48" tabindex="15" aria-label="Back Page"></md-icon>
+    </md-button>
+    <span flex></span>
+    <md-button flex="20" class="md-raised md-accent md-hue-1" ng-click="$ctrl.signupForward()" tabindex="14" ng-disabled="$ctrl.signupForm.$invalid || $ctrl.signupForm.$pending">
+        <md-icon md-svg-src="hardware:ic_keyboard_arrow_right_24px" class="md-icon-s48" aria-label="Next Page"></md-icon>
+    </md-button>
+</div>
