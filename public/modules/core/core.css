@@ -1,5 +1,6 @@
 base {
     background-color: #e9e9e9;
+    overflow: scroll;
 }
 
 #baseContent, .md-toolbar-tools {
@@ -11,18 +12,28 @@ base {
 #homeLink {
     font-weight: 700;
     cursor: pointer;
-    margin: 0px;
+    margin: 0px 20px 0px 0px;
 }
 
 #divLanding {
     position: relative;
 }
 
+#landingImage {
+    width: auto;
+    height: auto;
+    min-width: 400px;
+    min-height: 400px;
+}
+
 #btnGetStarted {
     position: absolute;
     margin: 0 auto;
-    border-radius: 1000px;
     color: white;
+}
+
+#btnGetStarted, #btnGetStarted * {
+    border-radius: 1000px;
 }
 
 #loginContainer {
@@ -35,6 +46,7 @@ base {
     width: 300px;
     right: 0px;
     padding:24px;
+    z-index: 3;
 }
 
 #loginFormTriangle {
@@ -48,7 +60,18 @@ base {
     border-bottom-color: white;
 }
 
-md-sidenav .md-button {
-    margin: 0px;
-    border-radius: 0px;
+#workspaceButtons * {
+    color: white;
+    border-radius: 1000px;
+}
+
+
+fe-card-header div {
+    height: 40px;
+    padding: 12px;
+    background-color: orange;
+}
+
+fe-card-header h3 {
+    color: white;
 }

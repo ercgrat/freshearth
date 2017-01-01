@@ -4,20 +4,15 @@
   Parent Component: Main
   Component: Signup
  -->
-<div flex="90" flex-offset="5" flex-gt-md="80" flex-offset-gt-md="10" md-whiteframe="2">
-    <md-toolbar class="md-hue-1" md-whiteframe="1">
-        <div class="md-toolbar-tools">
-            <h2>{{ $ctrl.formTitle }}</h2>
-        </div>
-    </md-toolbar>
-    <md-content>
-        <loading-indicator loading-style="linear" progress-mode="determinate" progress-value-ref="$ctrl.signupLocation" progress-multiplier="16.66" theme="md-accent md-hue-3"></loading-indicator>
-        <account-signup ng-show="$ctrl.signupLocation == 0" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()"></account-signup>
-        <type-signup ng-show="$ctrl.signupLocation == 1" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></type-signup>
-        <name-signup ng-show="$ctrl.signupLocation == 2" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></name-signup>
-        <headline-signup ng-show="$ctrl.signupLocation == 3" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></headline-signup>
-        <address-signup ng-show="$ctrl.signupLocation == 4" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></address-signup>
-        <phone-signup ng-show="$ctrl.signupLocation == 5" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></phone-signup>
-        <review-signup ng-show="$ctrl.signupLocation == 6" signup-credentials="$ctrl.signupCredentials" signup-backward="$ctrl.backwardSignupLocation()" submit="$ctrl.submit()"></review-signup>
-    </md-content>
-</div>
+
+<md-content md-whiteframe="2">
+    <fe-card-header>{{ $ctrl.formTitle }}</fe-card-header>
+    <md-divider></md-divider>
+    <account-signup ng-show="$ctrl.signupLocation == 0" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()"></account-signup>
+    <type-signup ng-show="$ctrl.signupLocation == 1" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></type-signup>
+    <name-signup ng-show="$ctrl.signupLocation == 2" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></name-signup>
+    <headline-signup ng-show="$ctrl.signupLocation == 3" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></headline-signup>
+    <address-signup ng-show="$ctrl.signupLocation == 4" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></address-signup>
+    <phone-signup ng-show="$ctrl.signupLocation == 5" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></phone-signup>
+    <review-signup ng-show="$ctrl.signupLocation == 6" signup-credentials="$ctrl.signupCredentials" signup-backward="$ctrl.backwardSignupLocation()" submit="$ctrl.submit()"></review-signup>
+</md-content>

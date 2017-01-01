@@ -33,13 +33,9 @@ angular.module('FreshEarth').config(function($stateProvider) {
         abstract: true,
         resolve: {
             cookieLogin: function($q, userIdentification) {
-                return userIdentification.isLoggedOut().then(function(response) {
+                if(!userIdentification.isLoggedIn()) {
                     return userIdentification.cookieLogin();
-                }).then(function(response) {
-                    $q.resolve(response);
-                }).catch(function(error) {
-                    $q.reject(error);
-                });
+                }
             }
         }
     });

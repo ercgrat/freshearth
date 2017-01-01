@@ -14,7 +14,6 @@ function userIdentification($q, $http, $state, cookieManager, _) {
         isBusinessDefined: isBusinessDefined,
         isAuthenticated: isAuthenticated,
         isLoggedIn: isLoggedIn,
-        isLoggedOut: isLoggedOut,
         isAdmin: isAdmin,
         isVerified: isVerified,
         //
@@ -41,9 +40,6 @@ function userIdentification($q, $http, $state, cookieManager, _) {
 
     /*
      *    User Authentication Status
-     *
-     *    @args
-     *      resolve: Returns a promise if defined
      */
     function isAuthenticated() {
         return authenticated;
@@ -68,16 +64,9 @@ function userIdentification($q, $http, $state, cookieManager, _) {
      *
      */
     function isLoggedIn() {
-        return authenticated ? $q.resolve(true) : $q.reject(false);
+        return authenticated;
     }
-
-    /*
-     *    User Logged Out
-     *
-     */
-    function isLoggedOut() {
-        return authenticated ? $q.reject(false) : $q.resolve(true);
-    }
+    
     /*
      *    User Admin Status
      */

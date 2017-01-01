@@ -1,4 +1,4 @@
-function ProductController(_, $timeout, $element, $scope, productManager) {
+function ProductController(_, $timeout, $element, $scope, productManager, toastNotification) {
     var ctrl = this;
 	ctrl.productBackup = {};
 	
@@ -33,7 +33,7 @@ function ProductController(_, $timeout, $element, $scope, productManager) {
 		});
 	};
 	
-	ctrl.save = function() {
+	ctrl.save = function(showToast) {
 		$timeout(function() {
 			if(ctrl.productForm.$valid) {
 				if(_.isNil(ctrl.product.id)) {
@@ -48,6 +48,9 @@ function ProductController(_, $timeout, $element, $scope, productManager) {
 					.then(function() {
 						ctrl.editing = false;
 						ctrl.productBackup = _.clone(ctrl.product);
+                        if(showToast) {
+                            toastNotification.generalInfoMessage("Updated product availability.");
+                        }
 					});
 				}
 			}

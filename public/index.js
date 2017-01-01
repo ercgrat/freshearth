@@ -76,8 +76,9 @@ FreshEarth.config(function($mdIconProvider) {
 /*
  * Comment this out to remove the visualizer at the bottom
  */
-FreshEarth.run(function() {
+FreshEarth.run(function($uiRouter) {
     var vis = window['ui-router-visualizer'];
+    vis.visualizer($uiRouter);
 });
 
 /*

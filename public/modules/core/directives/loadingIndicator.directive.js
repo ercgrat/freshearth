@@ -102,4 +102,4 @@ function circularProgressConfiguration($mdProgressCircularProvider) {
 angular
     .module('FreshEarth')
     .config(circularProgressConfiguration)
-    .directive('loadingIndicator', loadingIndicator)
+    .directive('loadingIndicator', loadingIndicator);

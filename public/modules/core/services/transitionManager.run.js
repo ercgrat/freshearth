@@ -9,7 +9,14 @@ function transitionManager($q, $transitions, $state, _, toastNotification) {
     });
 
     $transitions.onStart({}, function(transition, state) {
-        // console.log('onStart');
+        console.log($state.get());
+        console.log(state);
+        console.log(transition);
+        if(!_.has($state.get(), state)) {
+            console.log($state.get());
+            console.log(state);
+            //throw new Error("Path not found.");
+        }
     });
 
     /*
@@ -28,10 +35,6 @@ function transitionManager($q, $transitions, $state, _, toastNotification) {
         // console.log('onExit');
     });
 
-    /*
-     *
-     */
-
     $transitions.onError({}, function(transition, state) {
         /*
          * Views That Require Authorization
@@ -40,13 +43,15 @@ function transitionManager($q, $transitions, $state, _, toastNotification) {
          *  This will catch attempts made to access those View's before they happen
          *
          */
+        console.log("OnERRORRRR");
         return $q.resolve(transition).then(function() {
+            console.log(transition.getResolveTokens());
             if (_.includes(transition.getResolveTokens(), 'isLoggedIn')) {
                 if (!transition.getResolveValue('isLoggedIn')) {
-                    return $state.go('401').then(function() {
-                        return toastNotification.generalInfoMessage('Please Login for Access!');
+                    return $state.go('landing').then(function() {
+                        return toastNotification.generalInfoMessage('Login required.');
                     }).catch(function(error) {
-                        return $q.reject(error);
+                        throw error;
                     });
                 } else {
                     return $state.go('dashboard').then(function() {

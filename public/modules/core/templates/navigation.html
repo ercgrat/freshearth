@@ -5,10 +5,17 @@
  -->
 <md-toolbar>
     <div layout-align="space-between center" layout-align-gt-lg="end center" class="md-toolbar-tools">
-        <h2 id="homeLink">
-          <span ui-sref="{{ $ctrl.userIdentification.isAuthenticated() ? 'dashboard' : 'landing' }}">FRESH<br/>EARTH</span>
-        </h2>
-        <div id="loginContainer" ng-if="!$ctrl.userIdentification.isAuthenticated()">
+        <div layout="row">
+            <h2 id="homeLink">
+              <span ui-sref="{{ $ctrl.userIdentification.isLoggedIn() ? 'dashboard' : 'landing' }}">FRESH<br/>EARTH</span>
+            </h2>
+            <div id="workspaceButtons" layout="row" layout-align="start center" ng-if="$ctrl.userIdentification.isLoggedIn()">
+                <md-button ui-sref="products" class="md-accent md-raised md-hue-2">
+                    <span class="hmar-5">PRODUCTS</span>
+                </md-button>
+            </div>
+        </div>
+        <div id="loginContainer" ng-if="!$ctrl.userIdentification.isLoggedIn()">
             <md-button ng-click="$ctrl.loginSelected = !$ctrl.loginSelected" class="hpad-10">
                 <md-icon md-svg-src="action:ic_face_24px" aria-label="Login"></md-icon>
                 <span class="hmar-5">LOGIN</span>

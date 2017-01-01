@@ -1,7 +1,7 @@
 /*
  *    Product Manager
  */
-function productManager(_, $q, $http, userIdentification) {
+function productManager(_, $q, api) {
 
     return {
         createCategory: createCategory,
@@ -17,125 +17,39 @@ function productManager(_, $q, $http, userIdentification) {
      *    Gets Business Information
      */
     function getProducts(businessId) {
-        return userIdentification.getToken().then(function(response) {
-            return $http.get(APIURL + '/product/business/' + businessId, {
-                headers: {
-                    Authorization: response.token
-                }
-            });
-        }).then(function(response) {
-            return response.data;
-        }).catch(function(error) {
-            throw error;
-        });
+        return api.get('/product/business/' + businessId, null, true);
     }
 
     function createCategory(name) {
-        return userIdentification.getToken()
-            .then(function(response) {
-                return $http.post(APIURL + '/product/category', {
-                    v: {
-                        "name": name
-                    }
-                }, {
-                    headers: {
-                        Authorization: response.token
-                    }
-                });
-            }).then(function(response) {
-                console.log(response);
-                return response.data.id;
-            }).catch(function(error) {
-                throw error;
-            });
+        return api.post('/product/category', null, true, {
+            "name": name
+        });
     }
 
     function updateCategory(id, name) {
-        return userIdentification.getToken()
-            .then(function(response) {
-                return $http.put(APIURL + '/product/category', {
-                    v: {
-                        "id": id,
-                        "name": name
-                    }
-                }, {
-                    headers: {
-                        Authorization: response.token
-                    }
-                });
-            })
-            .catch(function(error) {
-                throw error;
-            });
+        return api.put('/product/category', null, true, {
+            "id": id,
+            "name": name
+        });
     }
 
     function deleteCategory(category) {
-        return userIdentification.getToken()
-            .then(function(response) {
-                return $http.delete(APIURL + '/product/category/' + category.id, {
-                    headers: {
-                        Authorization: response.token
-                    }
-                });
-            })
-            .catch(function(error) {
-                throw error;
-            });
+        return api.del('/product/category/' + category.id, null, true);
     }
 
     function createProduct(product) {
-        return userIdentification.getToken()
-            .then(function(response) {
-                return $http.post(APIURL + '/product', {
-                    v: product
-                }, {
-                    headers: {
-                        Authorization: response.token
-                    }
-                });
-            })
-            .then(function(response) {
-                return response.data.id;
-            })
-            .catch(function(error) {
-                throw error;
-            });
+        return api.post('/product', null, true, product);
     }
 
     function updateProduct(product) {
-        return userIdentification.getToken()
-            .then(function(response) {
-                return $http.put(APIURL + '/product', {
-                    v: product
-                }, {
-                    headers: {
-                        Authorization: response.token
-                    }
-                });
-            })
-            .then(function() {
-                return product;
-            })
-            .catch(function(error) {
-                throw error;
-            });
+        return api.put('/product', null, true, product);
     }
 
     function deleteProduct(product) {
         if (_.isNil(product.id)) {
             return $q.resolve(true);
         } else {
-            return userIdentification.getToken()
-                .then(function(response) {
-                    return $http.delete(APIURL + '/product/' + product.id, {
-                        headers: {
-                            Authorization: response.token
-                        }
-                    });
-                })
-                .catch(function(error) {
-                    throw error;
-                });
+            return api.del('/product/' + product.id, null, true);
         }
     }
 }

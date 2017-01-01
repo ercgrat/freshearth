@@ -4,12 +4,14 @@
 
 function NavigationController($mdSidenav, $state, userIdentification, toastNotification) {
     var ctrl = this;
-
-    ctrl.userIdentification = userIdentification;
-
+    
+    ctrl.$onInit = function() {
+        ctrl.userIdentification = userIdentification;
+    };
+    
     ctrl.logout = function() {
         return userIdentification.logout().then(function(response) {
-            $state.go('login');
+            $state.go('landing');
             return toastNotification.generalInfoMessage('Logout Successful');
         }).catch(function(error) {
             return toastNotification.generalErrorMessage('Logout Unsuccessful');
@@ -28,10 +30,11 @@ function NavigationController($mdSidenav, $state, userIdentification, toastNotif
 
     ctrl.submit = function() {
         return userIdentification.login(ctrl.loginCredentials.email, ctrl.loginCredentials.password, ctrl.loginCredentials.remember).then(function(response) {
+            ctrl.loginSelected = false;
             $state.go('dashboard');
-            return ctrl.toastNotification.generalInfoMessage('Login Successful');
+            return toastNotification.generalInfoMessage('Login Successful');
         }).catch(function(error) {
-            return ctrl.toastNotification.generalErrorMessage('Login Unsuccessful');
+            return toastNotification.generalErrorMessage('Login Unsuccessful');
         });
     };
 };

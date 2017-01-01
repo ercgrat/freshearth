@@ -34,7 +34,7 @@
     <script src="lib/js/visualizer.js"></script>
 
     <!-- Google Maps Javascript V3 -->
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDqVK76uKmyDcv5SOJIlHDNf9CagfEG5k"></script>
+    <!--script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDqVK76uKmyDcv5SOJIlHDNf9CagfEG5k"></script-->
 
     <!-- Your application bootstrap  -->
     <script src="index.js"></script>
@@ -49,6 +49,7 @@
     <script src="modules/core/services/lodash.factory.js"></script>
     <script src="modules/core/services/userIdentification.factory.js"></script>
     <script src="modules/core/services/googleMapManager.factory.js"></script>
+    <script src="modules/core/services/api.factory.js"></script>
 
     <!-- Runtime Functions -->
     <script src="modules/core/services/transitionManager.run.js"></script>
@@ -63,6 +64,9 @@
     <script src="modules/core/directives/phoneValidator.directive.js"></script>
     <script src="modules/core/directives/googleMap.directive.js"></script>
     <script src="modules/core/directives/loadingIndicator.directive.js"></script>
+    
+    <!-- FreshEarth UI directives -->
+    <script src="modules/core/directives/freshearth-ui/fe-card-header.directive.js"></script>
 
     <!-- Components -->
     <script src="modules/core/components/main.js"></script>
@@ -74,7 +78,6 @@
     <script src="modules/core/components/sidenav.js"></script>
     <!-- Error -->
     <script src="modules/core/components/error/error.js"></script>
-    <script src="modules/core/components/error/401.js"></script>
     <script src="modules/core/components/error/404.js"></script>
     <!-- Signup -->
     <script src="modules/core/components/signup/signup.js"></script>
@@ -153,7 +156,7 @@
 </head>
 
 <body ng-app="FreshEarth" flex layout="row">
-    <base flex layout="column"></base>
+    <base layout-fill layout="column"></base>
 </body>
 
 </html>

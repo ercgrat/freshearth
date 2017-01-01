@@ -5,7 +5,7 @@
         <span flex>{{$ctrl.product.unit}}</span>
         <span flex>${{$ctrl.product.price}}</span>
         <div flex>
-            <md-switch ng-model="$ctrl.product.available">Available</md-switch>
+            <md-switch ng-model="$ctrl.product.available" ng-click="$ctrl.save(true)">Available</md-switch>
         </div>
         <div flex="nogrow" layout="row">
             <md-button width="24px" height="24px" ng-click="$ctrl.startEditing()" class="md-primary md-hue-3 md-icon-button">
