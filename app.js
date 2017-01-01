@@ -7,7 +7,6 @@ app.use(express.static('public'));
 
 // HTML5 Mode Setup
 app.get('/*', function(req, res) {
-    console.log("serving");
     res.sendFile(__dirname + '/public/index.html');
 }).on('error', function(error) {
     console.log("Error: \n" + error.message);

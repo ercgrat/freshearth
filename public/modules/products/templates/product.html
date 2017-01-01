@@ -1,17 +1,17 @@
-<!-- <div class="product">
+<div class="product">
     <div class="productDisplay" ng-show="!$ctrl.editing" layout="row" layout-align="start center">
-        <span flex>{{ $ctrl.product.name }}</span>
-        <span class="quantityAvailable" flex>{{ $ctrl.product.quantityAvailable }}</span>
-        <span flex>{{ $ctrl.product.unit }}</span>
-        <span flex>{{ $ctrl.product.price | currency }}</span>
+        <span flex>{{$ctrl.product.name}}</span>
+        <span class="quantityAvailable" flex>{{$ctrl.product.quantityAvailable}}</span>
+        <span flex>{{$ctrl.product.unit}}</span>
+        <span flex>${{$ctrl.product.price}}</span>
         <div flex>
             <md-switch ng-model="$ctrl.product.available">Available</md-switch>
         </div>
         <div flex="nogrow" layout="row">
-            <md-button ng-click="$ctrl.startEditing()" class="md-primary md-hue-3 md-icon-button">
+            <md-button width="24px" height="24px" ng-click="$ctrl.startEditing()" class="md-primary md-hue-3 md-icon-button">
                 <md-icon md-svg-src="editor:ic_mode_edit_24px" aria-label="Edit Product"></md-icon>
             </md-button>
-            <md-button ng-click="$ctrl.deleteProduct()" class="md-icon-button">
+            <md-button width="24px" height="24px" ng-click="$ctrl.deleteProduct()" class="md-icon-button">
                 <md-icon md-svg-src="action:ic_delete_24px" aria-label="Delete Product"></md-icon>
             </md-button>
         </div>
@@ -20,11 +20,7 @@
         <div layout="row">
             <md-input-container flex>
                 <label>Name</label>
-                <input product-name-validator delay-model-update="$ctrl.updateModels" ng-model="$ctrl.product.name" ng-model-options="{ updateOn: 'blur' }" required name="name" aria-label="Name"></input>
-                <div ng-messages="$ctrl.productForm.name.$error">
-                    <div ng-message="required">Name Required</div>
-                    <div ng-message="validName">Invalid Name!</div>
-                </div>
+                <input ng-model="$ctrl.product.name" ng-model-options="{ updateOn: 'blur' }" required md-maxlength="45" aria-label="Name"></input>
             </md-input-container>
             <md-switch ng-model="$ctrl.product.available">Available</md-switch>
             <md-switch ng-model="$ctrl.product.allowFloatValues">Allow float values</md-switch>
@@ -33,18 +29,14 @@
             <md-input-container flex>
                 <label>Quantity</label>
                 <input ng-model="$ctrl.product.quantityAvailable" aria-label="Quantity" required></input>
-            </md-input-container>
+            </md-input-container> 
             <md-input-container flex>
                 <label>Unit</label>
                 <input ng-model="$ctrl.product.unit" aria-label="Unit" required></input>
             </md-input-container>
             <md-input-container flex>
                 <label>Price</label>
-                <input required price-validator currency="$" decimals="2" ng-model="$ctrl.product.price" ng-model-options="{ updateOn: 'blur' }" aria-label="Price" name="price"></input>
-                <div ng-messages="$ctrl.productForm.price.$error">
-                    <div ng-message="required">Price Required</div>
-                    <div ng-message="validAmount">Invalid Amount!</div>
-                </div>
+                <input ng-model="$ctrl.product.price" aria-label="Price" required></input>
             </md-input-container>
         </div>
         <md-input-container>
@@ -54,90 +46,6 @@
         <div layout="row" layout-align="end center">
             <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancel</md-button>
             <md-button class="md-raised md-primary" ng-click="$ctrl.save()" ng-disabled="!$ctrl.productForm.$valid">Save</md-button>
-        </div>
-    </form>
-</div> -->
-
-<div>
-    <md-list-item ng-show="!$ctrl.editing" class="md-list-item-text" layout="column" layout-gt-xs="row">
-        <p flex>{{ $ctrl.product.name | capitalizeFirstFilter }}</p>
-        <p flex>{{ $ctrl.product.quantityAvailable }}</p>
-        <p flex>{{ $ctrl.product.unit }}</p>
-        <p flex>{{ $ctrl.product.price | currency }}</p>
-        <div>
-            <!-- <md-switch ng-model="$ctrl.product.available">Available</md-switch> -->
-        </div>
-        <md-icon flex ng-click="$ctrl._toggleEditing()" class="md-button" md-svg-src="editor:ic_mode_edit_24px" aria-label="Edit Product"></md-icon>
-        <md-icon flex ng-click="$ctrl._delete()" md-svg-src="action:ic_delete_24px" aria-label="Delete Product"></md-icon>
-    </md-list-item>
-    <!-- <div ng-show="!$ctrl.editing" layout="row" layout-align="start center">
-        <span flex>{{ $ctrl.product.name }}</span>
-        <span class="quantityAvailable" flex>{{ $ctrl.product.quantityAvailable }}</span>
-        <span flex>{{ $ctrl.product.unit }}</span>
-        <span flex>{{ $ctrl.product.price | currency }}</span>
-        <div flex>
-            <md-switch ng-model="$ctrl.product.available">Available</md-switch>
-        </div>
-        <div flex="nogrow" layout="row">
-            <md-button ng-click="$ctrl.startEditing()" class="md-primary md-hue-3 md-icon-button">
-                <md-icon md-svg-src="editor:ic_mode_edit_24px" aria-label="Edit Product"></md-icon>
-            </md-button>
-            <md-button ng-click="$ctrl.deleteProduct()" class="md-icon-button">
-                <md-icon md-svg-src="action:ic_delete_24px" aria-label="Delete Product"></md-icon>
-            </md-button>
-        </div>
-    </div> -->
-    <form name="$ctrl.productForm" ng-show="$ctrl.editing" layout="column" layout-padding>
-        <div layout="row" layout-align="space-between" layout-wrap>
-            <md-input-container flex="100" flex-gt-xs="66" flex-gt-sm="75">
-                <label>Name</label>
-                <input product-name-validator ng-model="$ctrl.product.name" ng-model-options="{ updateOn: 'blur' }" name="name" aria-label="Name" required></input>
-                <div ng-messages="$ctrl.productForm.name.$error">
-                    <div ng-message="required">Name Required</div>
-                    <div ng-message="validName">Invalid Name!</div>
-                </div>
-            </md-input-container>
-            <md-input-container flex layout="column" layout-align="center center" class="mar-top-0 mar-bot-0">
-                <small>Available</small>
-                <md-switch ng-model="$ctrl.product.available" class="mar-top-5"></md-switch>
-            </md-input-container>
-            <md-input-container flex layout="column" layout-align="center center" class="mar-top-0 mar-bot-0">
-                <small>Allow Fractional Quantities</small>
-                <md-switch ng-model="$ctrl.product.allowFloatValues" class="mar-top-5"></md-switch>
-            </md-input-container>
-        </div>
-        <div layout="row" layout-wrap>
-            <md-input-container flex>
-                <label>Quantity Available</label>
-                <input quantity-validator min-value="0" max-value="10" ng-model="$ctrl.product.quantityAvailable" ng-model-options="{ updateOn: 'blur' }" aria-label="Quantity Available" name="quantity" required></input>
-                <div ng-messages="$ctrl.productForm.quantity.$error">
-                    <div ng-message="required">Quantity Required</div>
-                    <div ng-message="validQuanity">Invalid Amount!</div>
-                    <div ng-message="validQuanity">Invalid Amount!</div>
-                </div>
-            </md-input-container>
-            <md-input-container flex>
-                <label>Unit</label>
-                <input ng-model="$ctrl.product.unit" aria-label="Unit" required></input>
-            </md-input-container>
-            <md-input-container flex>
-                <label>Price</label>
-                <input price-validator currency="$" decimals="2" ng-model="$ctrl.product.price" ng-model-options="{ updateOn: 'blur' }" aria-label="Price" name="price" required></input>
-                <div ng-messages="$ctrl.productForm.price.$error">
-                    <div ng-message="required">Price Required</div>
-                    <div ng-message="validAmount">Invalid Amount!</div>
-                </div>
-            </md-input-container>
-        </div>
-        <md-input-container>
-            <label>Description</label>
-            <textarea ng-model="$ctrl.product.description" md-maxlength="255" aria-label="Description"></textarea>
-        </md-input-container>
-        <div layout="row" layout-align="end center">
-            <md-button class="md-raised" ng-click="$ctrl._cancel()">Cancel</md-button>
-            <!-- <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancel</md-button> -->
-            <md-button class="md-raised md-primary" ng-click="$ctrl.product.id ? $ctrl._updateProduct() : $ctrl._addProduct()" ng-disabled="!$ctrl.productForm.$valid">Save</md-button>
-            <!-- <md-button class="md-raised md-primary" ng-click="$ctrl.save()" ng-disabled="!$ctrl.productForm.$valid">Save</md-button> -->
         </div>
     </form>
 </div>

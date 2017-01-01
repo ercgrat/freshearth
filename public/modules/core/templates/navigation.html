@@ -5,19 +5,52 @@
  -->
 <md-toolbar>
     <div layout-align="space-between center" layout-align-gt-lg="end center" class="md-toolbar-tools">
-        <md-button ng-click="$ctrl.toggleSidenav()" hide-gt-lg>
-            <md-icon md-svg-src="action:ic_reorder_24px" class="md-icon-s32" aria-label="Navigation Menu"></md-icon>
-        </md-button>
-        <h2 hide-gt-lg>
-          <span ng-if="$ctrl.userIdentification.isAuthenticated()" ui-sref="dashboard">CROPOLIS</span>
-          <span ng-if="!$ctrl.userIdentification.isAuthenticated()" ui-sref="landing">CROPOLIS</span>
+        <h2 id="homeLink">
+          <span ui-sref="{{ $ctrl.userIdentification.isAuthenticated() ? 'dashboard' : 'landing' }}">FRESH<br/>EARTH</span>
         </h2>
-        <md-button ui-sref="login" ng-if="!$ctrl.userIdentification.isAuthenticated()" class="hpad-10">
-            <md-icon md-svg-src="action:ic_face_24px" aria-label="Login"></md-icon>
-            <span class="hmar-5">LOGIN</span>
-        </md-button>
+        <div id="loginContainer" ng-if="!$ctrl.userIdentification.isAuthenticated()">
+            <md-button ng-click="$ctrl.loginSelected = !$ctrl.loginSelected" class="hpad-10">
+                <md-icon md-svg-src="action:ic_face_24px" aria-label="Login"></md-icon>
+                <span class="hmar-5">LOGIN</span>
+            </md-button>
+            <div ng-if="$ctrl.loginSelected" >
+                <div id="loginFormTriangle"></div>
+                <md-card id="loginForm">
+                    <form novalidate name="$ctrl.loginForm">
+                        <div layout="column">
+                            <md-input-container>
+                                <label>Email Address</label>
+                                <input required email-validator login ng-model="$ctrl.loginCredentials.email" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="email" name="email" tabindex="1" aria-label="Email Address" />
+                                <div ng-messages="$ctrl.loginForm.email.$error">
+                                    <div ng-message="required">Email Address is required</div>
+                                    <div ng-message="email">Email Address is not formatted correctly</div>
+                                    <div ng-message="emailValid">Email Address is invalid!</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Password</label>
+                                <input required password-validator login ng-model="$ctrl.loginCredentials.password" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="password" name="password" tabindex="2" aria-label="Password" />
+                                <div ng-messages="$ctrl.loginForm.password.$error">
+                                    <div ng-message="required">Password is required</div>
+                                    <div ng-message="passwordValid">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
+                                </div>
+                            </md-input-container>
+                            <div layout="row" layout-align="center">
+                                <md-switch ng-model="$ctrl.loginCredentials.remember" aria-label="Remember Me" class="md-accent md-hue-2 mar-top-0">
+                                    Stay Logged In
+                                </md-switch>
+                            </div>
+                            <div layout="row" layout-align="center">
+                                <md-button flex ng-click="$ctrl.loginSelected = false" class="md-flat md-warn md-hue-2" tabindex="4">Cancel</md-button>
+                                <md-button flex class="md-raised md-primary md-hue-2" ng-click="$ctrl.submit()" ng-disabled="$ctrl.loginForm.$invalid || $ctrl.loginForm.$pending" tabindex="3">Submit</md-button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </md-card>
+        </div>
         <md-button ng-click="$ctrl.logout()" ng-if="$ctrl.userIdentification.isAuthenticated()" class="hpad-10">
-            <md-icon md-svg-src="action:ic_face_24px" aria-label="Login"></md-icon>
+            <md-icon md-svg-src="image:ic_nature_people_24px" aria-label="Login"></md-icon>
             <span class="hmar-5">LOGOUT</span>
         </md-button>
     </div>

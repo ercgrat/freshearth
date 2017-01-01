@@ -138,6 +138,8 @@ function userIdentification($q, $http, $state, cookieManager, _) {
     function getToken() {
         return cookieManager.getCookieObject('FreshEarth', 'token').then(function(response) {
             return response;
+        }).catch(function(error) {
+            console.err(error);
         });
     }
 
@@ -322,9 +324,9 @@ function userIdentification($q, $http, $state, cookieManager, _) {
             });
         }).then(function(response) {
             authenticated = true;
-            return $q.resolve('User Logged In');
+            return "User logged in.";
         }).catch(function(error) {
-            return $q.reject(error);
+            console.error(error);
         });
     }
 

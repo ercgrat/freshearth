@@ -5,13 +5,11 @@
   Component: Landing
  -->
 <div flex="90" flex-offset="5" flex-gt-md="80" flex-offset-gt-md="10" layout-padding>
-    <div flex layout="column" layout-align="center center" layout-padding>
+    <div id="divLanding" flex layout="column" layout-align="center center" layout-padding>
         <span flex></span>
-        <img flex ng-src="img/cropolis_white_green.png" height="600px">
-    </div>
-    <div flex layout="column" layout-align="center center" layout-padding>
-        <md-button flex ui-sref="login" class="md-accent md-raised hpad-15" aria-label="Get Started">
-            <h1>GET STARTED</h1>
+        <img flex ng-src="img/Earth.png" height="600px">
+        <md-button id="btnGetStarted" flex ui-sref="signup" class="md-accent md-raised hpad-15" aria-label="Get Started">
+            <h2>GET STARTED</h2>
         </md-button>
     </div>
 </div>

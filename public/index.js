@@ -5,80 +5,24 @@
  */
 var APIURL = 'http://45.55.250.153:8012/api';
 
-var myApp = angular.module('FreshEarth', ['ngMaterial', 'ui.router']);
+var FreshEarth = angular.module('FreshEarth', ['ngMaterial',  'ngMessages', 'ngAnimate', 'ngCookies', 'ngAria', 'ui.router']);
 
 /*
  *Material Design Theming
  * https://material.angularjs.org/latest/Theming/04_multiple_themes
  */
-myApp.config(function($mdThemingProvider) {
+FreshEarth.config(function($mdThemingProvider) {
 
     $mdThemingProvider.theme('default')
-        .primaryPalette('green', {
-            'default': 'A400',
-            'hue-1': 'A100',
-            'hue-2': 'A200',
-            'hue-3': 'A700'
-        })
-        .accentPalette('amber', {
-            'default': 'A400',
-            'hue-1': 'A100',
-            'hue-2': 'A200',
-            'hue-3': 'A700'
-        })
-        .warnPalette('deep-orange', {
-            'default': 'A400',
-            'hue-1': 'A100',
-            'hue-2': 'A200',
-            'hue-3': 'A700'
-        });
-
-    $mdThemingProvider.theme('alt')
-        .primaryPalette('green', {
-            'default': '800',
-            'hue-1': '300',
-            'hue-2': '500',
-            'hue-3': '900'
-        })
-        .accentPalette('amber', {
-            'default': '800',
-            'hue-1': '300',
-            'hue-2': '500',
-            'hue-3': '900'
-        })
-        .warnPalette('deep-orange', {
-            'default': '800',
-            'hue-1': '300',
-            'hue-2': '500',
-            'hue-3': '900'
-        })
-        .dark();
+        .primaryPalette('green')
+        .accentPalette('orange')
+        .warnPalette('deep-orange');
 
     $mdThemingProvider.theme('sidenav')
-        .primaryPalette('green', {
-            'default': 'A400',
-            'hue-1': 'A100',
-            'hue-2': 'A200',
-            'hue-3': 'A700'
-        })
-        .accentPalette('amber', {
-            'default': 'A400',
-            'hue-1': 'A100',
-            'hue-2': 'A200',
-            'hue-3': 'A700'
-        })
-        .warnPalette('deep-orange', {
-            'default': 'A400',
-            'hue-1': 'A100',
-            'hue-2': 'A200',
-            'hue-3': 'A700'
-        })
-        .backgroundPalette('background', {
-            'default': 'A400',
-            'hue-1': 'A100',
-            'hue-2': 'A200',
-            'hue-3': 'A700'
-        });
+        .primaryPalette('green')
+        .accentPalette('orange')
+        .warnPalette('deep-orange')
+        .backgroundPalette('background');
 
     $mdThemingProvider.definePalette('background', {
         '50': 'FAFAFA',
@@ -108,7 +52,7 @@ myApp.config(function($mdThemingProvider) {
  * Example
  *  <md-icon md-svg-src="navigation:ic_close_24px" aria-label="Navigation Menu"></md-icon>
  */
-myApp.config(function($mdIconProvider) {
+FreshEarth.config(function($mdIconProvider) {
     $mdIconProvider
         .iconSet('action', '/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg', 24)
         .iconSet('alert', '/material-design-icons/sprites/svg-sprite/svg-sprite-alert.svg', 24)
@@ -132,15 +76,14 @@ myApp.config(function($mdIconProvider) {
 /*
  * Comment this out to remove the visualizer at the bottom
  */
-myApp.run(function($uiRouter) {
+FreshEarth.run(function() {
     var vis = window['ui-router-visualizer'];
-    vis.visualizer($uiRouter);
 });
 
 /*
  * HTML5 Mode Configuration
  */
-myApp.config(function($locationProvider) {
+FreshEarth.config(function($locationProvider) {
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: true

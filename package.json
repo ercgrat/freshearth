@@ -1,5 +1,5 @@
 {
-  "name": "cropolis-server",
+  "name": "freshearth",
   "version": "1.0.0",
   "description": "NodeJS/Express web content server.",
   "main": "app.js",
@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "angular-cookies": "^1.5.9",
-    "angular-ui-router": "^0.3.1",
+    "angular-ui-router": "^0.3.2",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "lodash": "^4.17.0",

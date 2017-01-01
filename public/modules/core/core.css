@@ -1,0 +1,54 @@
+base {
+    background-color: #e9e9e9;
+}
+
+#baseContent, .md-toolbar-tools {
+    margin: 0 auto;
+    max-width: 1060px;
+    width: 100%;
+}
+
+#homeLink {
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0px;
+}
+
+#divLanding {
+    position: relative;
+}
+
+#btnGetStarted {
+    position: absolute;
+    margin: 0 auto;
+    border-radius: 1000px;
+    color: white;
+}
+
+#loginContainer {
+    position: relative;
+    font-size: 14px;
+}
+
+#loginForm {
+    position: absolute;
+    width: 300px;
+    right: 0px;
+    padding:24px;
+}
+
+#loginFormTriangle {
+    position:absolute;
+    width: 0px;
+    height: 0px;
+    right: 16px;
+    top: 18px;
+    border: solid 16px;
+    border-color: transparent;
+    border-bottom-color: white;
+}
+
+md-sidenav .md-button {
+    margin: 0px;
+    border-radius: 0px;
+}

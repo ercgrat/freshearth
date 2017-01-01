@@ -29,11 +29,7 @@ function cookieManager($q, $cookies, _) {
      *
      */
     function filter(name) {
-        if (_.has(filters, name)) {
-            return _.get(filters, name);
-        } else {
-            return name;
-        }
+        return filters[name] || name;
     }
 
     /*
@@ -61,7 +57,8 @@ function cookieManager($q, $cookies, _) {
             return $q.reject('Undefined Cookie: ' + name);
         } else {
             return $q.resolve($cookies.get(name)).catch(function(error) {
-                return $q.reject(error);
+                console.log("here");
+                throw error;
             });
         }
     }
@@ -159,13 +156,6 @@ function cookieManager($q, $cookies, _) {
             return critical ? $q.reject(error) : $q.resolve(error);
         });
     }
-}
-
-/*
- *    Configure $CookiesProvider
- */
-function configureCookiesProvider($cookiesProvider) {
-
 }
 
 angular
