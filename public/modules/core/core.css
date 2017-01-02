@@ -29,16 +29,15 @@ base {
 #btnGetStarted {
     position: absolute;
     margin: 0 auto;
-    color: white;
-}
-
-#btnGetStarted, #btnGetStarted * {
-    border-radius: 1000px;
 }
 
 #loginContainer {
     position: relative;
     font-size: 14px;
+}
+
+#loginContainer md-input-container {
+    margin-bottom: 0px;
 }
 
 #loginForm {
@@ -60,9 +59,9 @@ base {
     border-bottom-color: white;
 }
 
-#workspaceButtons * {
+fe-nav-button, fe-nav-button > .fe-nav-button, fe-nav-button > .fe-nav-button * {
     color: white;
-    border-radius: 1000px;
+    border-radius: 1000px !important;
 }
 
 

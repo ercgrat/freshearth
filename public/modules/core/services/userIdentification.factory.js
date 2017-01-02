@@ -12,6 +12,7 @@ function userIdentification($q, $http, $state, cookieManager, _) {
     return {
         isIdentityDefined: isIdentityDefined,
         isBusinessDefined: isBusinessDefined,
+        isBusinessType: isBusinessType,
         isAuthenticated: isAuthenticated,
         isLoggedIn: isLoggedIn,
         isAdmin: isAdmin,
@@ -33,9 +34,7 @@ function userIdentification($q, $http, $state, cookieManager, _) {
         signup: signup,
         login: login,
         cookieLogin: cookieLogin,
-        logout: logout,
-        //
-        sendVerification: sendVerification
+        logout: logout
     };
 
     /*
@@ -318,12 +317,15 @@ function userIdentification($q, $http, $state, cookieManager, _) {
             console.error(error);
         });
     }
-
-    /*
-     *    Send Verification Email to User
-     */
-    function sendVerification() {
-
+    
+    function isBusinessType(typeArray) {
+        return getBusinessType()
+        .then(function(businessType) {
+            if (!_.includes(typeArray, businessType)) {
+                throw new Error("Only businesses of type (" + _.join(typeArray) + ") may access this page.");
+            }
+            return true;
+        });
     }
 }
 

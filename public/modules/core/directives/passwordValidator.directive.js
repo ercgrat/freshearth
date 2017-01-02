@@ -42,51 +42,26 @@ function validatePassword($http, $q, _) {
         // Append element with REGEX ngPattern attribute
         scope.regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&+\-%^=])[A-Za-z\d@$!%*#?&+\-%^=]{8,}$/;
 
-        if (!_.has(attrs, 'login')) {
-            ngModel.$asyncValidators.passwordValid = function(modelValue, viewValue) {
-                var value = modelValue || viewValue;
+        ngModel.$validators.passwordValid = function(modelValue, viewValue) {
+            var value = modelValue || viewValue;
+            return scope.regExp.test(value);
+        }
 
-                var deferred = $q.defer();
-                $http.post(APIURL + '/validation/auth/password', {
-                    v: value
-                }).success(function(response) {
-                    response == true ? deferred.resolve('The password is valid') : deferred.reject('The password is invalid');
-                }).error(function(response) {
-                    deferred.reject('Unable to reach the Authorization API');
-                });
-                return deferred.promise;
-            }
-
-            if (_.has(attrs, 'passwordPair')) {
-                ngModel.$asyncValidators.passwordMatch = function() {
-                    var value = {
-                        password: form.password.$viewValue,
-                        repeatPassword: form.repeatPassword.$viewValue
-                    }
-                    var deferred = $q.defer();
-
-                    if (form.password.$dirty && form.repeatPassword.$dirty) {
-                        $http.post(APIURL + '/validation/auth/repeatPassword', {
-                            v: value
-                        }).success(function(response) {
-                            if (response) {
-                                deferred.resolve('The passwords match');
-                                form.repeatPassword.$setValidity('passwordMatch', true);
-                                form.password.$setValidity('passwordMatch', true);
-                            } else {
-                                deferred.reject('The passwords do not match');
-                            }
-                        }).error(function(response) {
-                            deferred.reject('Unable to reach the Authorization API');
-                        });
-                    } else {
-                        deferred.resolve('Only one password field has been touched');
-                    }
-                    return deferred.promise;
+        if (_.has(attrs, 'passwordPair')) {
+            scope.passwordPair = attrs.passwordPair;
+            scope.$watch('passwordPair', function() {
+                ngModel.$validate();
+            });
+            ngModel.$validators.passwordMatch = function() {
+                if(form.password.$viewValue == form.repeatPassword.$viewValue) {
+                    return true;
+                } else {
+                    return false;
                 }
-            }
+            };
         }
     }
+    
     return {
         require: ['ngModel', '^form'],
         link: link

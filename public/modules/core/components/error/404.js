@@ -21,7 +21,7 @@ angular.module('FreshEarth').component('e404', {
 
 angular.module('FreshEarth').config(function($stateProvider) {
     $stateProvider.state('404', {
-        url: '*path',
+        url: '/404',
         parent: 'error',
         component: 'e404'
     });

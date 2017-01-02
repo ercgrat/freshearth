@@ -9,19 +9,7 @@ function transitionManager($q, $transitions, $state, _, toastNotification) {
     });
 
     $transitions.onStart({}, function(transition, state) {
-        console.log($state.get());
-        console.log(state);
-        console.log(transition);
-        if(!_.has($state.get(), state)) {
-            console.log($state.get());
-            console.log(state);
-            //throw new Error("Path not found.");
-        }
     });
-
-    /*
-     *
-     */
 
     $transitions.onRetain({}, function(transition, state) {
         // console.log('onRetain');
@@ -43,7 +31,6 @@ function transitionManager($q, $transitions, $state, _, toastNotification) {
          *  This will catch attempts made to access those View's before they happen
          *
          */
-        console.log("OnERRORRRR");
         return $q.resolve(transition).then(function() {
             console.log(transition.getResolveTokens());
             if (_.includes(transition.getResolveTokens(), 'isLoggedIn')) {
@@ -55,7 +42,7 @@ function transitionManager($q, $transitions, $state, _, toastNotification) {
                     });
                 } else {
                     return $state.go('dashboard').then(function() {
-                        return toastNotification.generalErrorMessage(transition.error().message);
+                        return toastNotification.generalErrorMessage("An error occurred.");
                     });
                 };
             } else {

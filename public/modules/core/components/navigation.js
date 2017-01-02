@@ -37,6 +37,10 @@ function NavigationController($mdSidenav, $state, userIdentification, toastNotif
             return toastNotification.generalErrorMessage('Login Unsuccessful');
         });
     };
+    
+    ctrl.isCurrentState = function(name) {
+        return name == $state.current.name;
+    };
 };
 
 /*

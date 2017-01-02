@@ -73,6 +73,9 @@ function SignupController($scope, $state) {
     };
 
     ctrl.forwardSignupLocation = function() {
+        
+        console.log(ctrl.signupCredentials);
+        
         ctrl.signupLocation++;
         setSignupTitle(ctrl.signupLocation);
     };
@@ -83,6 +86,7 @@ function SignupController($scope, $state) {
     };
 
     ctrl.submit = function() {
+        console.log(ctrl.signupCredentials);
         return ctrl.userIdentification.signup(ctrl.signupCredentials).then(function(response) {
             $state.target('login');
             return ctrl.toastNotification.generalInfoMessage('Signup Successful');

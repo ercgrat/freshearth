@@ -29,9 +29,6 @@ function api(_, $q, $http, userIdentification, toastNotification) {
             });
         }).then(function(response) {
             return response.data;
-        }).catch(function(error) {
-            toastNotification.generalErrorMessage(error);
-            throw error;
         });
     }
     
@@ -45,9 +42,6 @@ function api(_, $q, $http, userIdentification, toastNotification) {
             });
         }).then(function(response) {
             return response.data;
-        }).catch(function(error) {
-            toastNotification.generalErrorMessage(error);
-            throw error;
         });
     }
     
@@ -61,9 +55,6 @@ function api(_, $q, $http, userIdentification, toastNotification) {
             });
         }).then(function(response) {
             return response.data;
-        }).catch(function(error) {
-            toastNotification.generalErrorMessage(error);
-            throw error;
         });
     }
     
@@ -73,9 +64,6 @@ function api(_, $q, $http, userIdentification, toastNotification) {
             return $http.delete(APIURL + path, {
                 headers: apiHeaders
             });
-        }).catch(function(error) {
-            toastNotification.generalErrorMessage(error);
-            throw error;
         });
     }
     

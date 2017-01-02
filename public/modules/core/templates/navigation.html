@@ -10,9 +10,15 @@
               <span ui-sref="{{ $ctrl.userIdentification.isLoggedIn() ? 'dashboard' : 'landing' }}">FRESH<br/>EARTH</span>
             </h2>
             <div id="workspaceButtons" layout="row" layout-align="start center" ng-if="$ctrl.userIdentification.isLoggedIn()">
-                <md-button ui-sref="products" class="md-accent md-raised md-hue-2">
+                <fe-nav-button ui-sref="products" selected="$ctrl.isCurrentState('products')">
                     <span class="hmar-5">PRODUCTS</span>
-                </md-button>
+                </fe-nav-button>
+                <fe-nav-button ui-sref="orders" selected="$ctrl.isCurrentState('orders')">
+                    <span class="hmar-5">ORDERS</span>
+                </fe-nav-button>
+                <fe-nav-button ui-sref="broadcast" selected="$ctrl.isCurrentState('broadcast')">
+                    <span class="hmar-5">BROADCAST</span>
+                </fe-nav-button>
             </div>
         </div>
         <div id="loginContainer" ng-if="!$ctrl.userIdentification.isLoggedIn()">
@@ -42,11 +48,6 @@
                                     <div ng-message="passwordValid">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
                                 </div>
                             </md-input-container>
-                            <div layout="row" layout-align="center">
-                                <md-switch ng-model="$ctrl.loginCredentials.remember" aria-label="Remember Me" class="md-accent md-hue-2 mar-top-0">
-                                    Stay Logged In
-                                </md-switch>
-                            </div>
                             <div layout="row" layout-align="center">
                                 <md-button flex ng-click="$ctrl.loginSelected = false" class="md-flat md-warn md-hue-2" tabindex="4">Cancel</md-button>
                                 <md-button flex class="md-raised md-primary md-hue-2" ng-click="$ctrl.submit()" ng-disabled="$ctrl.loginForm.$invalid || $ctrl.loginForm.$pending" tabindex="3">Submit</md-button>

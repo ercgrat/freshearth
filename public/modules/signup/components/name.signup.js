@@ -1,5 +1,5 @@
 function NameSignupController() {
-
+    var ctrl = this;
 };
 
 angular.module('FreshEarth').component('nameSignup', {

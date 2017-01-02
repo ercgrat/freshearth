@@ -52,7 +52,7 @@ FreshEarth.config(function($mdThemingProvider) {
  * Example
  *  <md-icon md-svg-src="navigation:ic_close_24px" aria-label="Navigation Menu"></md-icon>
  */
-FreshEarth.config(function($mdIconProvider) {
+FreshEarth.config(function($mdIconProvider, $urlRouterProvider) {
     $mdIconProvider
         .iconSet('action', '/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg', 24)
         .iconSet('alert', '/material-design-icons/sprites/svg-sprite/svg-sprite-alert.svg', 24)
@@ -71,6 +71,8 @@ FreshEarth.config(function($mdIconProvider) {
         .iconSet('social', '/material-design-icons/sprites/svg-sprite/svg-sprite-social.svg', 24)
         .iconSet('toggle', '/material-design-icons/sprites/svg-sprite/svg-sprite-toggle.svg', 24)
         .defaultIconSet('/material-design-icons/iconfont/MaterialIcons-Regular.svg', 24);
+        
+    $urlRouterProvider.otherwise('/404');
 });
 
 /*
