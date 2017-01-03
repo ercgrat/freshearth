@@ -1,0 +1,12 @@
+#contactGroupInput {
+    margin-bottom: 0px;
+}
+
+#contactList {
+    min-height: 60px;
+    max-height: 300px;
+}
+
+#contactListItemDefault {
+    color: grey;
+}

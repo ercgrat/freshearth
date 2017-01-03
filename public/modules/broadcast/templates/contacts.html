@@ -1,3 +1,55 @@
-<md-card>
-    <fe-card-header>Contacts</fe-card-header>
+<md-card layout="column">
+    <fe-card-header layout-fill>Contacts</fe-card-header>
+    <md-content layout-padding layout="column">
+        <div layout="row" layout-align="start center" flex>
+            <md-input-container flex id="contactGroupInput">
+                <label>Group</label>
+                <md-select ng-model="$ctrl.selectedGroup">
+                    <md-option ng-value="$ctrl.defaultGroup">All contacts</md-option>
+                    <md-option ng-repeat="group in $ctrl.contactData.groups" ng-value="group.id">
+                        {{ group.name }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-menu md-position-mode="target-right target" >
+                <md-button aria-label="Open contact action menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-menu-origin md-svg-icon="action:ic_list_24px"></md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button>
+                            <div layout="row" flex>
+                                <p flex>Edit group name</p>
+                                <md-icon md-menu-align-target md-svg-src="av:ic_library_add_24px" style="margin: auto 3px auto 0;"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button>
+                            <div layout="row" flex>
+                                <p flex>Add group</p>
+                                <md-icon md-menu-align-target md-svg-src="av:ic_library_add_24px" style="margin: auto 3px auto 0;"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button>
+                            <div layout="row" flex>
+                                <p flex>Delete group</p>
+                                <md-icon md-menu-align-target md-svg-src="av:ic_library_add_24px" style="margin: auto 3px auto 0;"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+        <md-list id="contactList" flex>
+            <md-list-item id="contactListItemDefault" ng-if="$ctrl.contactData.contacts[$ctrl.selectedGroup.id].length == 0">
+                Nothing to show here.
+            </md-list-item>
+            <md-list-item ng-repeat="contact in $ctrl.contactData.contacts[$ctrl.selectedGroup]">
+                <span>{{ contact.name }}</span>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </md-card>

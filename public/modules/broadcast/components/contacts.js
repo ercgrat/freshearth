@@ -2,12 +2,17 @@
  *  Controller Setup
  */
 
-function ContactsController(userIdentification, contactManager) {
+function ContactsController(_, contactManager) {
     var ctrl = this;
     
     ctrl.$onInit = function() {
+        ctrl.defaultGroup = _.find(ctrl.contactData.groups, function(group) {
+            return group.custom == 0;
+        });
+        ctrl.selectedGroup = ctrl.defaultGroup;
         console.log(contactManager);
         console.log(ctrl.contactData);
+        console.log(ctrl.defaultGroup);
     };
 }
 

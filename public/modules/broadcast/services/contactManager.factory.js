@@ -15,12 +15,19 @@ function contactManager(_, $q, api, userIdentification) {
         })
         .then(function(response) {
             console.log(response);
-            var data = {};
-            data.groups = response.groups;
-            _.forEach(response.memberships, function(membership) {
-                data.contacts[membership.group] = data.contacts[membership.group] || [];
-                data.contacts[membership.group].push(_.find(response.contacts, function(contact) {
-                    return contact.id == membership.contact;
+            var data = {
+                contacts: {},
+                groups: response.groups
+            };
+            _.forEach(data.groups, function(group) {
+                data.contacts[group.id] = [];
+            });
+            _.forEach(response.members, function(member) {
+                data.contacts[member.group].push(_.find(response.contacts, function(contact) {
+                    return contact.id == member.contactMember;
+                }));
+                data.contacts[member.group].push(_.find(response.businesses, function(business) {
+                    return business.id == member.businessMember;
                 }));
             });
             return data;

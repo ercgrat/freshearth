@@ -55,6 +55,7 @@ FreshEarth.config(function($mdThemingProvider) {
 FreshEarth.config(function($mdIconProvider, $urlRouterProvider) {
     $mdIconProvider
         .iconSet('action', '/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg', 24)
+        .iconSet('action-36', '/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg', 36)
         .iconSet('alert', '/material-design-icons/sprites/svg-sprite/svg-sprite-alert.svg', 24)
         .iconSet('av', '/material-design-icons/sprites/svg-sprite/svg-sprite-av.svg', 24)
         .iconSet('communication', '/material-design-icons/sprites/svg-sprite/svg-sprite-communication.svg', 24)
