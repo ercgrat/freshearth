@@ -3,7 +3,7 @@
 /*
  * API Base URL for making API Calls
  */
-var APIURL = 'http://45.55.250.153:8012/api';
+var APIURL = 'http://104.236.222.199:8000/api';
 
 var FreshEarth = angular.module('FreshEarth', ['ngMaterial',  'ngMessages', 'ngAnimate', 'ngCookies', 'ngAria', 'ui.router']);
 
@@ -52,7 +52,7 @@ FreshEarth.config(function($mdThemingProvider) {
  * Example
  *  <md-icon md-svg-src="navigation:ic_close_24px" aria-label="Navigation Menu"></md-icon>
  */
-FreshEarth.config(function($mdIconProvider, $urlRouterProvider) {
+FreshEarth.config(function($mdIconProvider, $urlRouterProvider, $sceDelegateProvider) {
     $mdIconProvider
         .iconSet('action', '/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg', 24)
         .iconSet('action-36', '/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg', 36)

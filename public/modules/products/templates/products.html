@@ -1,4 +1,5 @@
 <div id="products" layout="column">
+    <product-category category="{}" ng-show="false"></product-category>
     <product-category ng-repeat="category in $ctrl.businessData.categories | orderBy: 'name' track by category.id" category="category" products="$ctrl.businessData.products[category.id]" delete-category="$ctrl.deleteCategory(category)" add-category="$ctrl.addCategory(category)"></product-category>
 	<product-category ng-if="$ctrl.newCategory != null" category="$ctrl.newCategory" delete-category="$ctrl.deleteCategory()"></product-category>
     <md-button ng-click="$ctrl.createCategory()" class="md-primary" flex>Add Category</md-button>

@@ -2,7 +2,7 @@
  *  Controller Setup
  */
 
-function NavigationController($mdSidenav, $state, userIdentification, toastNotification) {
+function NavigationController($mdSidenav, $state, $location, userIdentification, toastNotification) {
     var ctrl = this;
     
     ctrl.$onInit = function() {
@@ -40,6 +40,10 @@ function NavigationController($mdSidenav, $state, userIdentification, toastNotif
     
     ctrl.isCurrentState = function(name) {
         return name == $state.current.name;
+    };
+    
+    ctrl.aboutPage = function() {
+        window.location = 'http://freshearth.io/';
     };
 };
 

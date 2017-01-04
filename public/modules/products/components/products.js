@@ -2,14 +2,17 @@
  *  Controller Setup
  */
 
-function ProductsController(_, productManager) {
+function ProductsController(_, productManager, $timeout, $scope) {
     var ctrl = this;
 
     ctrl.createCategory = function() {
         ctrl.newCategory = {
             name: ""
         };
-    }
+        $timeout(function() {
+            $scope.$apply();
+        });
+    };
 
     ctrl.addCategory = function(category) {
         ctrl.newCategory = null;
@@ -22,12 +25,12 @@ function ProductsController(_, productManager) {
             return;
         }
         return productManager.deleteCategory(category)
-            .then(function() {
-                var id = category.id;
-                _.remove(ctrl.businessData.categories, function(x) {
-                    return x.id == id;
-                });
+        .then(function() {
+            var id = category.id;
+            _.remove(ctrl.businessData.categories, function(x) {
+                return x.id == id;
             });
+        });
     };
 }
 

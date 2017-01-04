@@ -18,6 +18,6 @@ function BaseController($rootScope) {
  */
 
 angular.module('FreshEarth').component('base', {
-    templateUrl: 'modules/core/templates/base.html',
+    templateUrl: '/modules/core/templates/base.html',
     controller: BaseController
 });

@@ -13,6 +13,6 @@ app.get('/*', function(req, res) {
     console.log(error.stack);
 });
 
-app.listen(8011, function() {
-    console.log("Listening on port 8011.");
+app.listen(80, function() {
+    console.log("Listening on port 80.");
 });

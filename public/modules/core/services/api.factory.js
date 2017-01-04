@@ -60,7 +60,6 @@ function api(_, $q, $http, userIdentification, toastNotification) {
     
     function del(path, headers, authNeeded) {
         return getHeaders(headers, authNeeded).then(function(apiHeaders) {
-            data = data || {};
             return $http.delete(APIURL + path, {
                 headers: apiHeaders
             });

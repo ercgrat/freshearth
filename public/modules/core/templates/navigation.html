@@ -9,16 +9,23 @@
             <h2 id="homeLink">
               <span ui-sref="{{ $ctrl.userIdentification.isLoggedIn() ? 'dashboard' : 'landing' }}">FRESH<br/>EARTH</span>
             </h2>
-            <div id="workspaceButtons" layout="row" layout-align="start center" ng-if="$ctrl.userIdentification.isLoggedIn()">
-                <fe-nav-button ui-sref="products" selected="$ctrl.isCurrentState('products')">
-                    <span class="hmar-5">PRODUCTS</span>
-                </fe-nav-button>
-                <fe-nav-button ui-sref="orders" selected="$ctrl.isCurrentState('orders')">
-                    <span class="hmar-5">ORDERS</span>
-                </fe-nav-button>
-                <fe-nav-button ui-sref="broadcast" selected="$ctrl.isCurrentState('broadcast')">
-                    <span class="hmar-5">BROADCAST</span>
-                </fe-nav-button>
+            <div id="workspaceButtons" layout="row" layout-align="start center">
+                <div ng-if="$ctrl.userIdentification.isLoggedIn()">
+                    <fe-nav-button ui-sref="products" selected="$ctrl.isCurrentState('products')">
+                        <span class="hmar-5">PRODUCTS</span>
+                    </fe-nav-button>
+                    <fe-nav-button ui-sref="orders" selected="$ctrl.isCurrentState('orders')">
+                        <span class="hmar-5">ORDERS</span>
+                    </fe-nav-button>
+                    <fe-nav-button ui-sref="broadcast" selected="$ctrl.isCurrentState('broadcast')">
+                        <span class="hmar-5">BROADCAST</span>
+                    </fe-nav-button>
+                </div>
+                <div ng-if="!$ctrl.userIdentification.isLoggedIn()">
+                    <fe-nav-button ng-click="$ctrl.aboutPage()">
+                        <span class="hmar-5">ABOUT US</span>
+                    </fe-nav-button>
+                </div>
             </div>
         </div>
         <div id="loginContainer" ng-if="!$ctrl.userIdentification.isLoggedIn()">
