@@ -9,9 +9,6 @@ function ProductsController(_, productManager, $timeout, $scope) {
         ctrl.newCategory = {
             name: ""
         };
-        $timeout(function() {
-            $scope.$apply();
-        });
     };
 
     ctrl.addCategory = function(category) {
@@ -73,6 +70,7 @@ angular.module('FreshEarth').config(function($stateProvider) {
                 .then(function(response) {
                     var data = {};
                     data.categories = response.categories;
+                    console.log(data.categories);
                     data.products = {};
                     _.forEach(response.products, function(product) {
                         data.products[product.category] = data.products[product.category] || [];

@@ -31,20 +31,20 @@ function ProductCategoryTitleController(_, $element, $timeout, productManager, t
 
                 if (!ctrl.category.id) {
                     return productManager.createCategory(ctrl.category.name)
-                        .then(function(categoryId) {
-                            ctrl.category.id = categoryId;
-                            ctrl.editing = false;
-                        })
-                        .catch(function() {
-                            toastNotification.generalErrorMessage("Failed to create category.");
-                        });
+                    .then(function(categoryId) {
+                        ctrl.category.id = categoryId;
+                        ctrl.addCategory(ctrl.category);
+                    })
+                    .catch(function() {
+                        toastNotification.generalErrorMessage("Failed to create category.");
+                    });
                 } else {
                     ctrl.editing = false;
                     if (ctrl.previousName != ctrl.category.name) {
                         return productManager.updateCategory(ctrl.category.id, ctrl.category.name)
-                            .catch(function() {
-                                toastNotification.generalErrorMessage("Failed to update category name.");
-                            });
+                        .catch(function() {
+                            toastNotification.generalErrorMessage("Failed to update category name.");
+                        });
                     }
                 }
             }

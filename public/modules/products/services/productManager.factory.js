@@ -23,6 +23,8 @@ function productManager(_, $q, api) {
     function createCategory(name) {
         return api.post('/product/category', null, true, {
             "name": name
+        }).then(function(response) {
+            return response.id;
         });
     }
 
@@ -38,7 +40,10 @@ function productManager(_, $q, api) {
     }
 
     function createProduct(product) {
-        return api.post('/product', null, true, product);
+        return api.post('/product', null, true, product)
+        .then(function(response) {
+            return response.id;
+        });
     }
 
     function updateProduct(product) {

@@ -1,42 +1,47 @@
 <md-card layout="column">
     <fe-card-header layout-fill>Contacts</fe-card-header>
     <md-content layout-padding layout="column">
-        <div layout="row" layout-align="start center" flex>
-            <md-input-container flex id="contactGroupInput">
+        <div layout="row" layout-align="start start" flex>
+            <md-input-container flex class="contactGroupInput" ng-show="!$ctrl.editing">
                 <label>Group</label>
-                <md-select ng-model="$ctrl.selectedGroup">
+                <md-select ng-model="$ctrl.selectedGroup" ng-model-options="{ trackBy: '$value.id' }">
                     <md-option ng-value="$ctrl.defaultGroup">All contacts</md-option>
-                    <md-option ng-repeat="group in $ctrl.contactData.groups" ng-value="group.id">
+                    <md-option ng-repeat="group in $ctrl.contactData.groups | filter: { custom: 1 }" ng-value="group">
                         {{ group.name }}
                     </md-option>
                 </md-select>
             </md-input-container>
+            <md-input-container ng-show="$ctrl.editing" flex class="contactGroupInput">
+                <label>Group Name</label>
+                <input ng-model="$ctrl.selectedGroup.name" id="groupNameEditor" ng-model-options="{ updateOn: 'blur' }" ng-blur="$ctrl.saveGroupName()">
+                </input>
+            </md-input-container>
             <md-menu md-position-mode="target-right target" >
-                <md-button aria-label="Open contact action menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-button aria-label="Open contact action menu" class="md-icon-button md-fab md-mini md-hue-1" ng-click="$mdOpenMenu($event)">
                     <md-icon md-menu-origin md-svg-icon="action:ic_list_24px"></md-icon>
                 </md-button>
                 <md-menu-content width="4">
                     <md-menu-item>
-                        <md-button>
+                        <md-button ng-click="$ctrl.createGroup()">
+                            <div layout="row" flex>
+                                <p flex>Create group</p>
+                                <md-icon md-menu-align-target md-svg-src="content:ic_add_24px" style="margin: auto 3px auto 0;"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="$ctrl.editing = !$ctrl.editing" ng-disabled="!$ctrl.selectedGroup.custom">
                             <div layout="row" flex>
                                 <p flex>Edit group name</p>
-                                <md-icon md-menu-align-target md-svg-src="av:ic_library_add_24px" style="margin: auto 3px auto 0;"></md-icon>
+                                <md-icon md-menu-align-target md-svg-src="editor:ic_mode_edit_24px" style="margin: auto 3px auto 0;"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button>
-                            <div layout="row" flex>
-                                <p flex>Add group</p>
-                                <md-icon md-menu-align-target md-svg-src="av:ic_library_add_24px" style="margin: auto 3px auto 0;"></md-icon>
-                            </div>
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button>
+                        <md-button ng-disabled="!$ctrl.selectedGroup.custom" ng-click="$ctrl.deleteGroup()">
                             <div layout="row" flex>
                                 <p flex>Delete group</p>
-                                <md-icon md-menu-align-target md-svg-src="av:ic_library_add_24px" style="margin: auto 3px auto 0;"></md-icon>
+                                <md-icon md-menu-align-target md-svg-src="action:ic_delete_24px" style="margin: auto 3px auto 0;"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>

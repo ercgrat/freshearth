@@ -20,6 +20,7 @@ function ProductCategoryController(_, $element, productManager) {
     };
 
     ctrl.addProduct = function(product) {
+        console.log(product);
         ctrl.products.push(product);
         ctrl.newProduct = null;
     };
@@ -30,11 +31,11 @@ function ProductCategoryController(_, $element, productManager) {
             return;
         }
         return productManager.deleteProduct(product)
-            .then(function() {
-                _.remove(ctrl.products, function(x) {
-                    return x.id == product.id;
-                });
+        .then(function() {
+            _.remove(ctrl.products, function(x) {
+                return x.id == product.id;
             });
+        });
     };
 }
 

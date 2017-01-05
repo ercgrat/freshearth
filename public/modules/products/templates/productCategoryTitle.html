@@ -5,7 +5,7 @@
         </h3>
         <md-input-container ng-show="$ctrl.editing">
             <label>Category Name</label>
-            <input ng-model="$ctrl.category.name" ng-maxlength="45" ng-model-options="{ updateOn: 'blur' }" ng-blur="$ctrl.disableEditing()" name="name">
+            <input ng-model="$ctrl.category.name" ng-maxlength="45" ng-model-options="{ updateOn: 'blur' }" ng-blur="$ctrl.disableEditing()" name="name"></input>
             <div ng-messages="$ctrl.categoryTitleForm.name.$error">
                 <div ng-message="maxlength">Category must be less than 45 characters</div>
             </div>

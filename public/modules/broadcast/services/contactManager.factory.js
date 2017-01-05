@@ -5,6 +5,8 @@ function contactManager(_, $q, api, userIdentification) {
 
     return {
         createContact: createContact,
+        createGroup: createGroup,
+        deleteGroup: deleteGroup,
         getContactData: getContactData
     };
     
@@ -32,6 +34,17 @@ function contactManager(_, $q, api, userIdentification) {
             });
             return data;
         });
+    }
+    
+    function createGroup(group) {
+        return api.post('/contact/group', null, true, group)
+        .then(function(response) {
+            return response.id;
+        });
+    }
+    
+    function deleteGroup(group) {
+        return api.del('/contact/group/' + group.id, null, true);
     }
 
     function createContact(name, email) {
