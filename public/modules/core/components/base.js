@@ -6,10 +6,13 @@ function BaseController($rootScope) {
     var ctrl = this;
 
     $rootScope.$on('GETLoading', function(e, res) {
-        ctrl.GETLoading = res;
+        ctrl.loading = res;
     });
     $rootScope.$on('TRANSITIONLoading', function(e, res) {
-        ctrl.TRANSITIONLoading = res.status;
+        ctrl.loading = res.status;
+    });
+    $rootScope.$on('POSTLoading', function(e, res) {
+        ctrl.loading = res;
     });
 }
 

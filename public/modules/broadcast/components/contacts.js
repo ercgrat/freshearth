@@ -5,12 +5,26 @@
 function ContactsController(_, contactManager, $timeout) {
     var ctrl = this;
     
-    ctrl.$onInit = function() {
-        ctrl.defaultGroup = _.find(ctrl.contactData.groups, function(group) {
-            return group.custom == 0;
+    function focusEditor() {
+        ctrl.editing = true;
+        $timeout(function() {
+            console.log("focusing the editor");         
+            var editor = document.getElementById("groupNameEditor");
+            editor.focus();
+            editor.select();
         });
+    }
+    
+    ctrl.$onInit = function() {
+        ctrl.defaultGroup = ctrl.contactData.defaultGroup;
         ctrl.lastSelectedGroup = ctrl.defaultGroup;
         ctrl.selectedGroup = ctrl.defaultGroup;
+        ctrl.newContact = {
+            name: "",
+            email: ""
+        }
+        
+        console.log(ctrl.contactData.contacts[ctrl.selectedGroup]);
         
         angular.element(document.getElementById("groupNameEditor"))
         .bind("keypress", function(event) {
@@ -23,25 +37,24 @@ function ContactsController(_, contactManager, $timeout) {
         });
     };
     
+    ctrl.enableEditing = function() {
+        focusEditor();
+    };
+        
     ctrl.createGroup = function() {
         ctrl.lastSelectedGroup = ctrl.selectedGroup;
         var newGroup = { name: "" };
         ctrl.selectedGroup = newGroup;
-        ctrl.editing = true;
-        $timeout(function() {
-            var editor = document.getElementById("groupNameEditor");
-            editor.focus();
-            editor.select();
-        });
+        focusEditor();
     };
     
     ctrl.deleteGroup = function() {
-        return contactManager.deleteGroup(ctrl.selectedGroup)
-        .then(function() {
-            var index = _.findIndex(ctrl.contactData.groups, ctrl.selectedGroup);
-            index = (index == ctrl.contactData.groups.length - 1) ? index - 1 : index;
-            _.remove(ctrl.contactData.groups, ctrl.selectedGroup);
-            ctrl.selectedGroup = ctrl.contactData.groups[index];
+        return contactManager.deleteGroup(ctrl.contactData, ctrl.selectedGroup)
+        .then(function(index) {
+            if(index == ctrl.contactData.groups.length) {
+                index--;
+            }
+            ctrl.selectedGroup = ctrl.contactData.groups[index];            
         });
     };
     
@@ -51,16 +64,47 @@ function ContactsController(_, contactManager, $timeout) {
                 ctrl.editing = false;
                 ctrl.selectedGroup = ctrl.lastSelectedGroup;
                 return;
-            } else {
-                return contactManager.createGroup(ctrl.selectedGroup)
-                .then(function(groupId) {
-                    ctrl.editing = false;
-                    ctrl.selectedGroup.id = groupId;
-                    ctrl.selectedGroup.custom = 1;
-                    ctrl.contactData.groups.push(ctrl.selectedGroup);
+            } else if(ctrl.groupForm.$valid) {
+                if(!_.isNil(ctrl.selectedGroup.id)) {
+                    return contactManager.updateGroup(ctrl.contactData, ctrl.selectedGroup)
+                    .then(function(group) {
+                        ctrl.editing = false;
+                        ctrl.selectedGroup = group;
+                    });
+                } else {
+                    return contactManager.createGroup(ctrl.contactData, ctrl.selectedGroup)
+                    .then(function(group) {
+                        ctrl.editing = false;
+                        ctrl.selectedGroup = group;
+                    });
+                }
+            }
+        });
+    };
+    
+    ctrl.saveContact = function() {
+        var formElement = angular.element(ctrl.contactForm.$$element[0]);
+        var nameInput = formElement.find('input')[0];
+        var emailInput = formElement.find('input')[1];
+        $timeout(function() {
+            if(ctrl.contactForm.$valid) {
+                return contactManager.createContact(ctrl.contactData, ctrl.newContact)
+                .then(function(contactId) {
+                    ctrl.contactForm.name.$setPristine(true);
+                    ctrl.contactForm.name.$setValidity();
+                    ctrl.contactForm.email.$setPristine(true);
+                    ctrl.contactForm.email.$setValidity();
+                    ctrl.newContact.name = "";
+                    ctrl.newContact.email = "";
+                    nameInput.blur();
+                    emailInput.blur();
                 });
             }
         });
+    };
+    
+    ctrl.deleteContact = function() {
+        
     };
 }
 

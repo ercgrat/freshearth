@@ -33,6 +33,7 @@ function api(_, $q, $http, userIdentification, toastNotification) {
     }
     
     function post(path, headers, authNeeded, data) {
+        console.log(data);
         return getHeaders(headers, authNeeded).then(function(apiHeaders) {
             data = data || {};
             return $http.post(APIURL + path, {

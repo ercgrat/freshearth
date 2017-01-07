@@ -3,12 +3,39 @@
     height: 34px;
 }
 
+.contactInput {
+    margin-bottom: 6px;
+    height:40px;
+}
+
+#contactGroupDivider {
+    padding: 0px;
+}
+
 #contactList {
     min-height: 60px;
-    max-height: 300px;
+    max-height: 168px;
     overflow: auto;
+}
+
+#contactList md-list-item {
+    padding: 0px 8px;
+    min-height: 56px;
+    height: 56px;
+}
+
+#contactList md-list-item md-icon {
+    margin-right: 12px;
+}
+
+#contactList .md-avatar-icon {
+    margin-top: 8px;
 }
 
 #contactListItemDefault {
     color: grey;
+}
+
+#contactFormButton {
+    margin-top: 12px;
 }

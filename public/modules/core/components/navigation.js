@@ -2,7 +2,7 @@
  *  Controller Setup
  */
 
-function NavigationController($mdSidenav, $state, $location, userIdentification, toastNotification) {
+function NavigationController($mdSidenav, $state, $location, $timeout, userIdentification, toastNotification) {
     var ctrl = this;
     
     ctrl.$onInit = function() {
@@ -29,12 +29,16 @@ function NavigationController($mdSidenav, $state, $location, userIdentification,
     };
 
     ctrl.submit = function() {
-        return userIdentification.login(ctrl.loginCredentials.email, ctrl.loginCredentials.password, ctrl.loginCredentials.remember).then(function(response) {
-            ctrl.loginSelected = false;
-            $state.go('dashboard');
-            return toastNotification.generalInfoMessage('Login Successful');
-        }).catch(function(error) {
-            return toastNotification.generalErrorMessage('Login Unsuccessful');
+        $timeout(function() {
+            if(ctrl.loginForm.$valid) {
+                return userIdentification.login(ctrl.loginCredentials.email, ctrl.loginCredentials.password, ctrl.loginCredentials.remember).then(function(response) {
+                    ctrl.loginSelected = false;
+                    $state.go('dashboard');
+                    return toastNotification.generalInfoMessage('Login Successful');
+                }).catch(function(error) {
+                    return toastNotification.generalErrorMessage('Login Unsuccessful');
+                });
+            }
         });
     };
     

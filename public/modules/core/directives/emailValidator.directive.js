@@ -33,14 +33,25 @@ function validateEmail($http, $q, _) {
         if (!_.has(attrs, 'login')) {
             ctrl.$asyncValidators.emailAvailable = function(modelValue, viewValue) {
                 var value = modelValue || viewValue;
-                return $http.post(APIURL + '/validation/auth/existingEmail', {
-                    v: value
-                }).then(function(response) {
+                return $http.get(APIURL + '/validation/auth/existingEmail/' + value)
+                .then(function(response) {
                     return response.data ? $q.resolve('This Email Address is not registered') : $q.reject('This Email Address is already registered with FreshEarth!');
                 }).catch(function(response) {
                     return $q.reject('Unable to reach the Authorization API');
                 });
             };
+            
+            if(_.has(attrs, 'contact')) {
+                ctrl.$asyncValidators.contactAvailable = function(modelValue, viewValue) {
+                    var value = modelValue || viewValue;
+                    return $http.get(APIURL + '/validation/auth/existingContact/' + value)
+                    .then(function(response) {
+                        return response.data ? $q.resolve() : $q.reject('This email address is already in your contacts');
+                    }).catch(function(response) {
+                        return $q.reject('Unable to reach the Authorization API');
+                    });
+                };
+            }
         }
     }
 

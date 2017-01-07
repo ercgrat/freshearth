@@ -112,7 +112,6 @@ function httpInterceptor($q) {
  */
 function uiRouterTransitions($transitions, $rootScope, $q) {
 
-
     $transitions.onBefore({}, function(transition, state) {
         $rootScope.$broadcast('TRANSITIONLoading', {
             status: transition.ignored() == transition.valid() ? false : true,
