@@ -3,7 +3,7 @@
 /*
  * API Base URL for making API Calls
  */
-var APIURL = 'http://104.236.222.199:8000/api';
+var APIURL = 'https://app.freshearth.io:8000/api';
 
 var FreshEarth = angular.module('FreshEarth', ['ngMaterial',  'ngMessages', 'ngAnimate', 'ngCookies', 'ngAria', 'ui.router']);
 
