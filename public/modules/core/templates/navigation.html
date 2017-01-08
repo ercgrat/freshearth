@@ -29,7 +29,7 @@
             </div>
         </div>
         <div id="loginContainer" ng-if="!$ctrl.userIdentification.isLoggedIn()">
-            <md-button ng-click="$ctrl.loginSelected = !$ctrl.loginSelected" class="hpad-10">
+            <md-button ng-click="$ctrl.toggleLogin()" class="hpad-10">
                 <md-icon md-svg-src="action:ic_face_24px" aria-label="Login"></md-icon>
                 <span class="hmar-5">LOGIN</span>
             </md-button>
@@ -57,7 +57,7 @@
                             </md-input-container>
                             <div layout="row" layout-align="center">
                                 <md-button flex ng-click="$ctrl.loginSelected = false" class="md-flat md-warn md-hue-2" tabindex="4">Cancel</md-button>
-                                <md-button flex class="md-raised md-primary md-hue-2" ng-click="$ctrl.submit()" ng-disabled="$ctrl.loginForm.$invalid || $ctrl.loginForm.$pending" tabindex="3">Submit</md-button>
+                                <md-button flex type="submit" class="md-raised md-primary md-hue-2" ng-click="$ctrl.submit()" ng-disabled="$ctrl.loginForm.$invalid || $ctrl.loginForm.$pending" tabindex="3">Submit</md-button>
                             </div>
                         </div>
                     </form>

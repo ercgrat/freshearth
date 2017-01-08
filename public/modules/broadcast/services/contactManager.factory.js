@@ -5,8 +5,11 @@ function contactManager(_, $q, api, userIdentification) {
 
     return {
         createContact: createContact,
+        addContactToGroup: addContactToGroup,
+		deleteContact: deleteContact,
         createGroup: createGroup,
         deleteGroup: deleteGroup,
+		updateGroup: updateGroup,
         getContactData: getContactData
     };
     
@@ -20,7 +23,7 @@ function contactManager(_, $q, api, userIdentification) {
                 contacts: {},
                 groups: response.groups
             };
-            data.groups = _.sortBy(data.groups, ['name']);
+            console.log(response);
             _.forEach(data.groups, function(group) {
                 data.contacts[group.id] = [];
                 if(!group.custom) {
@@ -30,7 +33,12 @@ function contactManager(_, $q, api, userIdentification) {
             _.forEach(response.members, function(member) {
                 if(!_.isNil(member.contactMember)) {
                     data.contacts[member.group].push(_.find(response.contacts, function(contact) {
-                        return contact.id == member.contactMember;
+                        if(contact.id == member.contactMember) {
+                            console.log(contact);
+                            console.log(member);
+                            return true;
+                        }
+                        return false;
                     }));
                 } else {
                     data.contacts[member.group].push(_.find(response.businesses, function(business) {
@@ -38,6 +46,7 @@ function contactManager(_, $q, api, userIdentification) {
                     }));
                 }
             });
+            console.log(data);
             return data;
         });
     }
@@ -48,10 +57,16 @@ function contactManager(_, $q, api, userIdentification) {
             group.id = response.id;
             group.custom = 1;
             data.groups.push(group);
-            data.groups = _.sortBy(data.groups, ['name']);
             return group;
         });
     }
+	
+	function updateGroup(data, group) {
+		return api.put('/contact/group', null, true, group)
+		.then(function() {
+			return group;
+		});
+	}
     
     function deleteGroup(data, group) {
         return api.del('/contact/group/' + group.id, null, true)
@@ -70,14 +85,29 @@ function contactManager(_, $q, api, userIdentification) {
                 name: contact.name,
                 email: contact.email
             });
-            data.contacts[data.defaultGroup.id] = _.sortBy(data.contacts[data.defaultGroup.id], ['name']);
         });
     }
     
-    function deleteContact(data, contact) {
-        return api.del('/contact/' + contact.id, null, true)
+    function addContactToGroup(data, contact, group) {
+        return api.post('/contact/member', null, true, {
+            contactMember: contact.id,
+            group: group.id
+        })
         .then(function() {
-            var index 
+            data.contacts[group.id].push(contact);
+        });
+    }
+    
+    function deleteContact(data, group, contact) {
+        return api.del('/contact/member?contactMember=' + contact.id + '&group=' + group.id, null, true)
+        .then(function() {
+			if(group.custom) {
+				_.remove(data.contacts[group.id], contact);
+			} else {
+				_.forEach(data.contacts, function(members) {
+					_.remove(members, contact);
+				});
+			}
         });
     }
 }

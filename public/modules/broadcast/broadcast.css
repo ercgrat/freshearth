@@ -8,13 +8,16 @@
     height:40px;
 }
 
-#contactGroupDivider {
+.contactGroupDivider {
     padding: 0px;
 }
 
+#contactGroupAddContactSelector {
+    margin: 6px 0px 0px 0px;
+}
+
 #contactList {
-    min-height: 60px;
-    max-height: 168px;
+    height: 168px;
     overflow: auto;
 }
 
@@ -36,6 +39,18 @@
     color: grey;
 }
 
-#contactFormButton {
-    margin-top: 12px;
+#contactFormButtonDiv {
+    margin-top: 18px;
+}
+
+#contactFormButtonDiv > md-button {
+    width: 50%;
+}
+
+#contactFormButtonDiv button {
+    margin: 0px;
+}
+
+#contactGroupAddContactButton {
+    margin: 0px;
 }

@@ -8,6 +8,17 @@ function NavigationController($mdSidenav, $state, $location, $timeout, userIdent
     ctrl.$onInit = function() {
         ctrl.userIdentification = userIdentification;
     };
+	
+	ctrl.toggleLogin = function() {
+		ctrl.loginSelected = !ctrl.loginSelected;
+		$timeout(function() {
+			if(ctrl.loginSelected) {
+				var emailInput = ctrl.loginForm.email.$$element[0];
+				emailInput.focus();
+				emailInput.select();
+			}
+		});
+	};
     
     ctrl.logout = function() {
         return userIdentification.logout().then(function(response) {

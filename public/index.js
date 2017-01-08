@@ -23,6 +23,9 @@ FreshEarth.config(function($mdThemingProvider) {
         .accentPalette('orange')
         .warnPalette('deep-orange')
         .backgroundPalette('background');
+		
+	$mdThemingProvider.theme('deep-orange')
+		.primaryPalette('deep-orange');
 
     $mdThemingProvider.definePalette('background', {
         '50': 'FAFAFA',
