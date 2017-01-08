@@ -23,7 +23,6 @@ function contactManager(_, $q, api, userIdentification) {
                 contacts: {},
                 groups: response.groups
             };
-            console.log(response);
             _.forEach(data.groups, function(group) {
                 data.contacts[group.id] = [];
                 if(!group.custom) {
@@ -34,8 +33,6 @@ function contactManager(_, $q, api, userIdentification) {
                 if(!_.isNil(member.contactMember)) {
                     data.contacts[member.group].push(_.find(response.contacts, function(contact) {
                         if(contact.id == member.contactMember) {
-                            console.log(contact);
-                            console.log(member);
                             return true;
                         }
                         return false;
@@ -46,14 +43,13 @@ function contactManager(_, $q, api, userIdentification) {
                     }));
                 }
             });
-            console.log(data);
             return data;
         });
     }
     
     function createGroup(data, group) {
         return api.post('/contact/group', null, true, group)
-        .then(function(response) {            
+        .then(function(response) { 
             group.id = response.id;
             group.custom = 1;
             data.groups.push(group);
@@ -94,6 +90,7 @@ function contactManager(_, $q, api, userIdentification) {
             group: group.id
         })
         .then(function() {
+            data.contacts[group.id] = [];
             data.contacts[group.id].push(contact);
         });
     }

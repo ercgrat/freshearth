@@ -89,6 +89,7 @@ function ContactsController(_, $timeout, $mdDialog, contactManager) {
                     return contactManager.createGroup(ctrl.contactData, ctrl.selectedGroup)
                     .then(function(group) {
                         ctrl.editing = false;
+                        console.log(group);
                         ctrl.selectedGroup = group;
                     });
                 }
