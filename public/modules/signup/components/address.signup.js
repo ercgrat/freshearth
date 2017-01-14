@@ -27,7 +27,7 @@ function AddressSignupController(_) {
 };
 
 angular.module('FreshEarth').component('addressSignup', {
-    templateUrl: 'modules/core/templates/signup/address.signup.html',
+    templateUrl: 'modules/signup/templates/address.signup.html',
     controller: AddressSignupController,
     bindings: {
         signupForward: '&',

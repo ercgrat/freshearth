@@ -1,8 +1,11 @@
 /*
  *    uiRouter Interceptor Functions
  */
-function transitionManager($q, $transitions, $state, _, toastNotification) {
-
+function transitionManager($q, $transitions, $state, $timeout, _, toastNotification) {
+    
+    $state.defaultErrorHandler(function() {
+        // Do nothing
+    });
 
     $transitions.onBefore({}, function(transition, state) {
         // console.log('onBefore');
@@ -24,33 +27,27 @@ function transitionManager($q, $transitions, $state, _, toastNotification) {
     });
 
     $transitions.onError({}, function(transition, state) {
-        /*
-         * Views That Require Authorization
-         *
-         *  Any View who's parent is AUTH will require the user to be logged in
-         *  This will catch attempts made to access those View's before they happen
-         *
-         */
-        return $q.resolve(transition).then(function() {
-            console.log(transition.getResolveTokens());
-            if (_.includes(transition.getResolveTokens(), 'isLoggedIn')) {
-                if (!transition.getResolveValue('isLoggedIn')) {
-                    return $state.go('landing').then(function() {
-                        return toastNotification.generalInfoMessage('Login required.');
-                    }).catch(function(error) {
-                        throw error;
-                    });
-                } else {
-                    return $state.go('dashboard').then(function() {
-                        return toastNotification.generalErrorMessage("An error occurred.");
-                    });
-                };
+        console.log(transition.getResolveTokens());
+        if (_.includes(transition.getResolveTokens(), 'isLoggedIn')) {
+            console.log(transition.getResolveValue('isLoggedIn'));
+            if (!transition.getResolveValue('isLoggedIn')) {
+                $state.go('landing').then(function() {
+                    toastNotification.generalInfoMessage('Login required.');
+                });
             } else {
-                return $state.go('404');
-            }
-        }).catch(function(error) {
-            return $q.reject(error);
-        });
+                $state.go('dashboard').then(function() {
+                    toastNotification.generalErrorMessage("An error occurred.");
+                });
+            };
+        } else if(_.includes(transition.getResolveTokens(), 'isLoggedOut')) {
+            console.log("navigating to dashboard");
+            $state.go('dashboard');
+        } else if(_.includes(transition.getResolveTokens(), 'properTransition')) {
+            $state.go('landing');
+        } else {
+            $state.go('404');
+        }
+        throw new Error("");
     });
 
     /*

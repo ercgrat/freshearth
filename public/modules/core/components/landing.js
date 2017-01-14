@@ -14,6 +14,14 @@ angular.module('FreshEarth').config(function($stateProvider) {
     $stateProvider.state('landing', {
         url: '/',
         parent: 'main',
-        component: 'landing'
+        component: 'landing',
+        resolve: {
+            isLoggedOut: [
+                'userIdentification',
+                function(userIdentification) {
+                    return userIdentification.isLoggedOut();
+                }
+            ]
+        }
     })
 });

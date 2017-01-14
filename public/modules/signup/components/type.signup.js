@@ -16,7 +16,7 @@ function TypeSignupController() {
 };
 
 angular.module('FreshEarth').component('typeSignup', {
-    templateUrl: 'modules/core/templates/signup/type.signup.html',
+    templateUrl: 'modules/signup/templates/type.signup.html',
     controller: TypeSignupController,
     bindings: {
         signupForward: '&',

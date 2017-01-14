@@ -15,6 +15,7 @@ function userIdentification($q, $http, $state, cookieManager, _) {
         isBusinessType: isBusinessType,
         isAuthenticated: isAuthenticated,
         isLoggedIn: isLoggedIn,
+        isLoggedOut: isLoggedOut,
         isAdmin: isAdmin,
         isVerified: isVerified,
         //
@@ -63,7 +64,10 @@ function userIdentification($q, $http, $state, cookieManager, _) {
      *
      */
     function isLoggedIn() {
-        return authenticated;
+        return authenticated ? $q.resolve() : $q.reject();
+    }
+    function isLoggedOut() {
+        return authenticated ? $q.reject() : $q.resolve();
     }
     
     /*

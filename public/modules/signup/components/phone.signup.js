@@ -4,7 +4,7 @@ function PhoneSignupController() {
 };
 
 angular.module('FreshEarth').component('phoneSignup', {
-    templateUrl: 'modules/core/templates/signup/phone.signup.html',
+    templateUrl: 'modules/signup/templates/phone.signup.html',
     controller: PhoneSignupController,
     bindings: {
         signupForward: '&',

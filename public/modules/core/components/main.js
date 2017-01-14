@@ -36,7 +36,18 @@ angular.module('FreshEarth').config(function($stateProvider) {
                 if(!userIdentification.isLoggedIn()) {
                     return userIdentification.cookieLogin();
                 }
-            }
+            },
+            previousState: [
+                "$state",
+                function($state) {
+                    var state = {
+                        name: $state.current.name,
+                        params: $state.params,
+                        path: $state.href($state.current.name, $state.params)
+                    };
+                    return state;
+                }
+            ]
         }
     });
 });

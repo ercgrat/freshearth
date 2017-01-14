@@ -55,7 +55,7 @@ FreshEarth.config(function($mdThemingProvider) {
  * Example
  *  <md-icon md-svg-src="navigation:ic_close_24px" aria-label="Navigation Menu"></md-icon>
  */
-FreshEarth.config(function($mdIconProvider, $urlRouterProvider, $sceDelegateProvider) {
+FreshEarth.config(function($mdIconProvider, $urlRouterProvider, $sceDelegateProvider, $qProvider) {
     $mdIconProvider
         .iconSet('action', '/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg', 24)
         .iconSet('action-36', '/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg', 36)
@@ -77,6 +77,8 @@ FreshEarth.config(function($mdIconProvider, $urlRouterProvider, $sceDelegateProv
         .defaultIconSet('/material-design-icons/iconfont/MaterialIcons-Regular.svg', 24);
         
     $urlRouterProvider.otherwise('/404');
+    
+    $qProvider.errorOnUnhandledRejections(false);
 });
 
 /*

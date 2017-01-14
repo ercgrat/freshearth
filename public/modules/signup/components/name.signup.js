@@ -3,7 +3,7 @@ function NameSignupController() {
 };
 
 angular.module('FreshEarth').component('nameSignup', {
-    templateUrl: 'modules/core/templates/signup/name.signup.html',
+    templateUrl: 'modules/signup/templates/name.signup.html',
     controller: NameSignupController,
     bindings: {
         signupForward: '&',

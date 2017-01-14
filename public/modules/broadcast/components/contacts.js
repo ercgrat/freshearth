@@ -15,9 +15,8 @@ function ContactsController(_, $timeout, $mdDialog, contactManager) {
     }
     
     ctrl.$onInit = function() {
-        ctrl.defaultGroup = ctrl.contactData.defaultGroup;
-        ctrl.lastSelectedGroup = ctrl.defaultGroup;
-        ctrl.selectedGroup = ctrl.defaultGroup;
+        ctrl.contactData.selectedGroup = ctrl.contactData.defaultGroup;
+        ctrl.lastSelectedGroup = ctrl.contactData.selectedGroup;
         ctrl.newContact = {
             name: "",
             email: ""
@@ -55,42 +54,42 @@ function ContactsController(_, $timeout, $mdDialog, contactManager) {
     };
         
     ctrl.createGroup = function() {
-        ctrl.lastSelectedGroup = ctrl.selectedGroup;
+        ctrl.lastSelectedGroup = ctrl.contactData.selectedGroup;
         var newGroup = { name: "" };
-        ctrl.selectedGroup = newGroup;
+        ctrl.contactData.selectedGroup = newGroup;
         focusEditor();
     };
     
     ctrl.deleteGroup = function() {
-        return contactManager.deleteGroup(ctrl.contactData, ctrl.selectedGroup)
+        return contactManager.deleteGroup(ctrl.contactData, ctrl.contactData.selectedGroup)
         .then(function(index) {
             if(index == ctrl.contactData.groups.length) {
                 index--;
             }
-            ctrl.selectedGroup = ctrl.contactData.groups[index];            
+            ctrl.contactData.selectedGroup = ctrl.contactData.groups[index];            
         });
     };
     
     ctrl.saveGroupName = function() {
         $timeout(function() {
-            if(ctrl.selectedGroup.name == "") {
+            if(ctrl.contactData.selectedGroup.name == "") {
                 ctrl.editing = false;
-                ctrl.selectedGroup = ctrl.lastSelectedGroup;
+                ctrl.contactData.selectedGroup = ctrl.lastSelectedGroup;
                 return;
             } else if(ctrl.groupForm.$valid) {
-                if(!_.isNil(ctrl.selectedGroup.id)) {
-                    return contactManager.updateGroup(ctrl.contactData, ctrl.selectedGroup)
+                if(!_.isNil(ctrl.contactData.selectedGroup.id)) {
+                    return contactManager.updateGroup(ctrl.contactData, ctrl.contactData.selectedGroup)
                     .then(function(group) {
                         ctrl.editing = false;
 						console.log(group);
-                        ctrl.selectedGroup = group;
+                        ctrl.contactData.selectedGroup = group;
                     });
                 } else {
-                    return contactManager.createGroup(ctrl.contactData, ctrl.selectedGroup)
+                    return contactManager.createGroup(ctrl.contactData, ctrl.contactData.selectedGroup)
                     .then(function(group) {
                         ctrl.editing = false;
                         console.log(group);
-                        ctrl.selectedGroup = group;
+                        ctrl.contactData.selectedGroup = group;
                     });
                 }
             }
@@ -119,18 +118,18 @@ function ContactsController(_, $timeout, $mdDialog, contactManager) {
     };
     
     ctrl.addContact = function() {
-        contactManager.addContactToGroup(ctrl.contactData, ctrl.selectedContact, ctrl.selectedGroup)
+        contactManager.addContactToGroup(ctrl.contactData, ctrl.selectedContact, ctrl.contactData.selectedGroup)
         .then(function() {
             ctrl.selectedContact = null;
         });
     };
     
     ctrl.deleteContact = function(contact) {
-        if(ctrl.selectedGroup.custom) {
-            contactManager.deleteContact(ctrl.contactData, ctrl.selectedGroup, contact);
+        if(ctrl.contactData.selectedGroup.custom) {
+            contactManager.deleteContact(ctrl.contactData, ctrl.contactData.selectedGroup, contact);
 		} else {
 			$mdDialog.show(ctrl.confirmContactDelete).then(function() {
-				contactManager.deleteContact(ctrl.contactData, ctrl.selectedGroup, contact);
+				contactManager.deleteContact(ctrl.contactData, ctrl.contactData.selectedGroup, contact);
 			}, function() {
 				// Cancelled
 			});
@@ -138,7 +137,7 @@ function ContactsController(_, $timeout, $mdDialog, contactManager) {
     };
     
     ctrl.selectableContacts = function(contact) {
-        return !_.find(ctrl.contactData.contacts[ctrl.selectedGroup.id], contact);
+        return !_.find(ctrl.contactData.contacts[ctrl.contactData.selectedGroup.id], contact);
     };
 }
 
@@ -152,6 +151,7 @@ angular.module('FreshEarth').component('contacts', {
     bindings: {
         userIdentification: '<',
         contactManager: '<',
-        contactData: '<'
+        contactData: '<',
+        broadcastData: '<'
     }
 });

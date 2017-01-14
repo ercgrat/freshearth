@@ -51,6 +51,7 @@ function contactManager(_, $q, api, userIdentification) {
         return api.post('/contact/group', null, true, group)
         .then(function(response) { 
             group.id = response.id;
+            data.contacts[group.id] = [];
             group.custom = 1;
             data.groups.push(group);
             return group;
@@ -90,7 +91,6 @@ function contactManager(_, $q, api, userIdentification) {
             group: group.id
         })
         .then(function() {
-            data.contacts[group.id] = [];
             data.contacts[group.id].push(contact);
         });
     }

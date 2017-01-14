@@ -4,8 +4,8 @@
         <form name="$ctrl.groupForm" layout="row" layout-align="start start" flex>
             <md-input-container flex class="contactGroupInput" ng-show="!$ctrl.editing">
                 <label>Group</label>
-                <md-select ng-model="$ctrl.selectedGroup" ng-model-options="{ trackBy: '$value.id' }">
-                    <md-option ng-value="$ctrl.defaultGroup">All contacts</md-option>
+                <md-select ng-model="$ctrl.contactData.selectedGroup" ng-model-options="{ trackBy: '$value.id' }">
+                    <md-option ng-value="$ctrl.contactData.defaultGroup">All contacts</md-option>
                     <md-option ng-repeat="group in $ctrl.contactData.groups | filter: { custom: 1 } | orderBy: 'name' track by group.id" ng-value="group">
                         {{ group.name }}
                     </md-option>
@@ -13,7 +13,7 @@
             </md-input-container>
             <md-input-container ng-show="$ctrl.editing" flex class="contactGroupInput">
                 <label>Group Name</label>
-                <input ng-model="$ctrl.selectedGroup.name" id="groupNameEditor" ng-model-options="{ updateOn: 'blur' }"
+                <input ng-model="$ctrl.contactData.selectedGroup.name" id="groupNameEditor" ng-model-options="{ updateOn: 'blur' }"
                     ng-blur="$ctrl.saveGroupName()" ng-maxlength="45">
                 </input>
             </md-input-container>
@@ -31,7 +31,7 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="$ctrl.enableEditing()" ng-disabled="!$ctrl.selectedGroup.custom" aria-label="Edit group name">
+                        <md-button ng-click="$ctrl.enableEditing()" ng-disabled="!$ctrl.contactData.selectedGroup.custom" aria-label="Edit group name">
                             <div layout="row" flex>
                                 <p flex>Edit group name</p>
                                 <md-icon md-menu-align-target md-svg-src="editor:ic_mode_edit_24px" style="margin: auto 3px auto 0;"></md-icon>
@@ -39,7 +39,7 @@
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-disabled="!$ctrl.selectedGroup.custom" ng-click="$ctrl.deleteGroup()" aria-label="Delete group">
+                        <md-button ng-disabled="!$ctrl.contactData.selectedGroup.custom" ng-click="$ctrl.deleteGroup()" aria-label="Delete group">
                             <div layout="row" flex>
                                 <p flex>Delete group</p>
                                 <md-icon md-menu-align-target md-svg-src="action:ic_delete_24px" style="margin: auto 3px auto 0;"></md-icon>
@@ -50,10 +50,10 @@
             </md-menu>
         </form>
         <md-list id="contactList">
-            <md-list-item id="contactListItemDefault" ng-if="$ctrl.contactData.contacts[$ctrl.selectedGroup.id].length == 0">
+            <md-list-item id="contactListItemDefault" ng-if="$ctrl.contactData.contacts[$ctrl.contactData.selectedGroup.id].length == 0">
                 No contacts yet.
             </md-list-item>
-            <md-list-item ng-repeat="contact in $ctrl.contactData.contacts[$ctrl.selectedGroup.id] | orderBy: 'name' track by contact.id" class="md-2-line">
+            <md-list-item ng-repeat="contact in $ctrl.contactData.contacts[$ctrl.contactData.selectedGroup.id] | orderBy: 'name' track by contact.id" class="md-2-line">
                 <md-icon md-svg-src="action:ic_account_circle_24px"></md-icon>
                 <div class="md-list-item-text" layout="column">
                     <h3>{{ contact.name }}</h3>
@@ -66,14 +66,15 @@
         </md-list>
         <md-divider class="contactGroupDivider"></md-divider>
         <div layout="row" layout-align="start center" flex>
-            <md-select ng-disabled="!$ctrl.selectedGroup.custom" id="contactGroupAddContactSelector" ng-model="$ctrl.selectedContact" flex>
-                <md-option ng-repeat="contact in $ctrl.contactData.contacts[$ctrl.defaultGroup.id] | filter:$ctrl.selectableContacts | orderBy: 'name' track by contact.id"
+            <md-select ng-disabled="!$ctrl.contactData.selectedGroup.custom" id="contactGroupAddContactSelector" ng-model="$ctrl.selectedContact"
+                aria-label="Select contact" flex>
+                <md-option ng-repeat="contact in $ctrl.contactData.contacts[$ctrl.contactData.defaultGroup.id] | filter:$ctrl.selectableContacts | orderBy: 'name' track by contact.id"
                     ng-value="contact">
                     {{ contact.name }} ({{ contact.email }})
                 </md-option>
             </md-select>
-            <md-button ng-disabled="!$ctrl.selectedGroup.custom" id="contactGroupAddContactButton" class="md-icon-button md-primary"
-                ng-click="$ctrl.addContact()">
+            <md-button ng-disabled="!$ctrl.contactData.selectedGroup.custom" id="contactGroupAddContactButton" class="md-icon-button md-primary"
+                ng-click="$ctrl.addContact()" aria-label="Add contact to group">
                 <md-icon md-svg-src="content:ic_add_24px"></md-icon>
             </md-button>
         </div>
@@ -81,7 +82,7 @@
 </md-card>
 
 <md-card>
-    <fe-card-header layout-fill>Contacts</fe-card-header>
+    <fe-card-header layout-fill>New Contact</fe-card-header>
     <md-content layout="column" layout-padding>
         <form name="$ctrl.contactForm" layout-fill layout="column">
             <md-input-container flex class="contactInput" name="$ctrl.contactName">

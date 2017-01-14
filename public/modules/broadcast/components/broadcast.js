@@ -5,7 +5,9 @@
 function BroadcastController() {
     var ctrl = this;
     
-    
+    ctrl.testSendEmail = function() {
+        ctrl.broadcastManager.sendBroadcast(ctrl.contactData.contacts[ctrl.contactData.selectedGroup.id]);
+    };
 }
 
 /*
@@ -16,6 +18,7 @@ angular.module('FreshEarth').component('broadcast', {
     templateUrl: 'modules/broadcast/templates/broadcast.html',
     controller: BroadcastController,
     bindings: {
+        broadcastManager: '<',
         contactManager: '<',
         contactData: '<'
     }
@@ -31,10 +34,11 @@ angular.module('FreshEarth').config(function($stateProvider) {
         parent: 'auth',
         component: 'broadcast',
         resolve: {
-            contactManager: 'contactManager',
             businessTypeCheck: function(userIdentification) {
                 return userIdentification.isBusinessType(['Producer']);
             },
+            broadcastManager: 'broadcastManager',
+            contactManager: 'contactManager',
             contactData: function(contactManager) {
                 return contactManager.getContactData();
             }
