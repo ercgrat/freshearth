@@ -2,10 +2,12 @@
  *  Controller Setup
  */
 
-function SignupController($scope, $state) {
+function SignupController($scope, $state, $timeout) {
     var ctrl = this;
 
-    ctrl.signupLocation = 0;
+    ctrl.$onInit = function() {
+        ctrl.signupLocation = 0;
+    };
 
     ctrl.signupValidators = {
         firstName: {
@@ -74,18 +76,16 @@ function SignupController($scope, $state) {
 
     ctrl.forwardSignupLocation = function() {
         ctrl.signupLocation++;
-        setSignupTitle(ctrl.signupLocation);
     };
 
     ctrl.backwardSignupLocation = function() {
         ctrl.signupLocation--;
-        setSignupTitle(ctrl.signupLocation);
     };
 
     ctrl.submit = function() {
         console.log(ctrl.signupCredentials);
         return ctrl.userIdentification.signup(ctrl.signupCredentials).then(function(response) {
-            $state.go('emailVerify', {
+            $state.go('welcome', {
                 email: ctrl.signupCredentials.email
             });
             return ctrl.toastNotification.generalInfoMessage('Signup Successful');
@@ -94,10 +94,8 @@ function SignupController($scope, $state) {
         });
     };
 
-    setSignupTitle(ctrl.signupLocation);
-
-    function setSignupTitle(location) {
-        switch (location) {
+    ctrl.signupRefresh = function() {
+        switch (ctrl.signupLocation) {
             case 0:
                 ctrl.formTitle = 'Account Information';
                 break;
@@ -108,21 +106,31 @@ function SignupController($scope, $state) {
                 ctrl.formTitle = 'Business Name';
                 break;
             case 3:
-                ctrl.formTitle = 'Business Headline';
-                break;
-            case 4:
                 ctrl.formTitle = 'Business Address';
                 break;
-            case 5:
+            case 4:
                 $scope.$broadcast('geocodeAddress');
                 ctrl.formTitle = 'Business Phone';
                 break;
-            case 6:
+            case 5:
                 $scope.$broadcast('showMap');
                 ctrl.formTitle = 'Review';
                 break;
             default:
                 ctrl.formTitle = 'Signup Form';
+        }
+        
+        // Clear form errors
+        ctrl.signupForm.$setPristine();
+        ctrl.signupForm.$setUntouched();
+        
+        // Set focus to first input
+        var firstInputContainer = ctrl.signupForm.$$element[0].querySelector('md-input-container');
+        if(firstInputContainer != null) {
+            angular.element(firstInputContainer).toggleClass("md-input-focused");
+            var firstInput = ctrl.signupForm.$$element[0].querySelector("input");
+            firstInput.focus();
+            firstInput.select();
         }
     };
 };

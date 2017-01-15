@@ -1,5 +1,9 @@
 function NameSignupController() {
     var ctrl = this;
+    
+    ctrl.$onInit = function() {
+        ctrl.signupRefresh();
+    };
 };
 
 angular.module('FreshEarth').component('nameSignup', {
@@ -8,7 +12,9 @@ angular.module('FreshEarth').component('nameSignup', {
     bindings: {
         signupForward: '&',
         signupBackward: '&',
+        signupRefresh: '&',
         signupCredentials: '=',
-        signupValidators: '<'
+        signupValidators: '<',
+        signupForm: '<'
     }
 });

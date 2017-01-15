@@ -7,10 +7,10 @@
     <div layout-align="space-between center" layout-align-gt-lg="end center" class="md-toolbar-tools">
         <div layout="row">
             <h2 id="homeLink">
-              <span ui-sref="{{ $ctrl.userIdentification.authenticated() ? 'dashboard' : 'landing' }}">FRESH<br/>EARTH</span>
+              <span ui-sref="{{ $ctrl.userIdentification.isLoggedIn(true) ? 'dashboard' : 'landing' }}">FRESH<br/>EARTH</span>
             </h2>
             <div id="workspaceButtons" layout="row" layout-align="start center">
-                <div ng-if="$ctrl.userIdentification.authenticated()">
+                <div ng-if="$ctrl.userIdentification.isLoggedIn(true)">
                     <fe-nav-button ui-sref="products" selected="$ctrl.isCurrentState('products')">
                         <span class="hmar-5">PRODUCTS</span>
                     </fe-nav-button>
@@ -21,14 +21,14 @@
                         <span class="hmar-5">BROADCAST</span>
                     </fe-nav-button>
                 </div>
-                <div ng-if="!$ctrl.userIdentification.authenticated()">
+                <div ng-if="!$ctrl.userIdentification.isLoggedIn(true)">
                     <fe-nav-button ng-click="$ctrl.aboutPage()">
                         <span class="hmar-5">ABOUT US</span>
                     </fe-nav-button>
                 </div>
             </div>
         </div>
-        <div id="loginContainer" ng-if="!$ctrl.userIdentification.authenticated()">
+        <div id="loginContainer" ng-if="!$ctrl.userIdentification.isLoggedIn(true)">
             <md-button ng-click="$ctrl.toggleLogin()" class="hpad-10">
                 <md-icon md-svg-src="action:ic_face_24px" aria-label="Login"></md-icon>
                 <span class="hmar-5">LOGIN</span>
@@ -64,7 +64,7 @@
                 </div>
             </md-card>
         </div>
-        <md-button ng-click="$ctrl.logout()" ng-if="$ctrl.userIdentification.isAuthenticated()" class="hpad-10">
+        <md-button ng-click="$ctrl.logout()" ng-if="$ctrl.userIdentification.isLoggedIn(true)" class="hpad-10">
             <md-icon md-svg-src="image:ic_nature_people_24px" aria-label="Login"></md-icon>
             <span class="hmar-5">LOGOUT</span>
         </md-button>

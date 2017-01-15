@@ -6,75 +6,73 @@
 
   Tabindex: 1-6
  -->
-<form name="$ctrl.signupForm" novalidate layout-padding>
-    <div layout="column">
-        <div flex layout="row">
-            <md-input-container flex>
-                <label>First Name</label>
-                <input required ng-model="$ctrl.signupCredentials.firstName" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="text" name="firstName" tabindex="1" aria-label="First Name" />
-                <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.firstName.$untouched || $ctrl.signupForm.firstName.$valid">
-                    <div class="ng-message-hint">{{ $ctrl.signupValidators.firstName.hint }}</div>
-                </div>
-                <div ng-messages="$ctrl.signupForm.firstName.$error">
-                    <div ng-message="required">First Name is required</div>
-                </div>
-            </md-input-container>
-            <span flex="5"></span>
-            <md-input-container flex>
-                <label>Last Name</label>
-                <input required ng-model="$ctrl.signupCredentials.lastName" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="text" name="lastName" tabindex="2" aria-label="Last Name" />
-                <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.lastName.$untouched || $ctrl.signupForm.lastName.$valid">
-                    <div class="ng-message-hint">{{ $ctrl.signupValidators.lastName.hint }}</div>
-                </div>
-                <div ng-messages="$ctrl.signupForm.lastName.$error">
-                    <div ng-message="required">Last Name is required</div>
-                </div>
-            </md-input-container>
-        </div>
-        <md-input-container>
-            <label>Email Address</label>
-            <input required ng-model="$ctrl.signupCredentials.email" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" email-validator type="email" name="email" tabindex="3" aria-label="Email Address" />
-            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.email.$untouched || $ctrl.signupForm.email.$valid">
-                <div class="ng-message-hint">{{ $ctrl.signupValidators.email.hint }}</div>
+<div layout="column">
+    <div flex layout="row">
+        <md-input-container flex>
+            <label>First Name</label>
+            <input required ng-model="$ctrl.signupCredentials.firstName" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="text" name="firstName" tabindex="1" aria-label="First Name" />
+            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.firstName.$untouched || $ctrl.signupForm.firstName.$valid">
+                <div class="ng-message-hint">{{ $ctrl.signupValidators.firstName.hint }}</div>
             </div>
-            <div ng-messages="$ctrl.signupForm.email.$error">
-                <div ng-message="required">Email Address is required</div>
-                <div ng-message="email">Email Address is not formatted correctly</div>
-                <div ng-message="emailValid">Email Address is invalid!</div>
-                <div ng-message="emailAvailable">Email Address is already registered with Cropolis!</div>
+            <div ng-messages="$ctrl.signupForm.firstName.$error">
+                <div ng-message="required">First Name is required</div>
             </div>
         </md-input-container>
-        <md-input-container>
-            <label>Password</label>
-            <input required ng-model="$ctrl.signupCredentials.password" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" ng-pattern="regExp" password-validator type="password" name="password" tabindex="4" aria-label="Password" />
-            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.password.$untouched || $ctrl.signupForm.password.$valid">
-                <div class="ng-message-hint">{{ $ctrl.signupValidators.password.hint }}</div>
+        <span flex="5"></span>
+        <md-input-container flex>
+            <label>Last Name</label>
+            <input required ng-model="$ctrl.signupCredentials.lastName" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="text" name="lastName" tabindex="2" aria-label="Last Name" />
+            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.lastName.$untouched || $ctrl.signupForm.lastName.$valid">
+                <div class="ng-message-hint">{{ $ctrl.signupValidators.lastName.hint }}</div>
             </div>
-            <div ng-messages="$ctrl.signupForm.password.$error">
-                <div ng-message="required">Password is required</div>
-                <div ng-message="pattern">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
-                <div ng-message="passwordValid">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
-                <div ng-message="passwordMatch">Passwords do not match!</div>
-            </div>
-        </md-input-container>
-        <md-input-container>
-            <label>Repeat Password</label>
-            <input required ng-model="$ctrl.signupCredentials.repeatPassword" ng-pattern="regExp" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" password-validator password-pair="$ctrl.signupCredentials.password" type="password" name="repeatPassword" tabindex="5" aria-label="Repeat Password" />
-            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.repeatPassword.$untouched || $ctrl.signupForm.repeatPassword.$valid">
-                <div class="ng-message-hint">{{ $ctrl.signupValidators.repeatPassword.hint }}</div>
-            </div>
-            <div ng-messages="$ctrl.signupForm.repeatPassword.$error">
-                <div ng-message="required">Password is required</div>
-                <div ng-message="pattern">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
-                <div ng-message="passwordValid">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
-                <div ng-message="passwordMatch">Passwords do not match!</div>
+            <div ng-messages="$ctrl.signupForm.lastName.$error">
+                <div ng-message="required">Last Name is required</div>
             </div>
         </md-input-container>
     </div>
-</form>
+    <md-input-container>
+        <label>Email Address</label>
+        <input required ng-model="$ctrl.signupCredentials.email" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" email-validator type="email" name="email" tabindex="3" aria-label="Email Address" />
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.email.$untouched || $ctrl.signupForm.email.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.email.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.email.$error">
+            <div ng-message="required">Email Address is required</div>
+            <div ng-message="email">Email Address is not formatted correctly</div>
+            <div ng-message="emailValid">Email Address is invalid!</div>
+            <div ng-message="emailAvailable">Email Address is already registered with Fresh Earth!</div>
+        </div>
+    </md-input-container>
+    <md-input-container>
+        <label>Password</label>
+        <input required ng-model="$ctrl.signupCredentials.password" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" ng-pattern="regExp" password-validator type="password" name="password" tabindex="4" aria-label="Password" />
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.password.$untouched || $ctrl.signupForm.password.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.password.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.password.$error">
+            <div ng-message="required">Password is required</div>
+            <div ng-message="pattern">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
+            <div ng-message="passwordValid">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
+            <div ng-message="passwordMatch">Passwords do not match!</div>
+        </div>
+    </md-input-container>
+    <md-input-container>
+        <label>Repeat Password</label>
+        <input required ng-model="$ctrl.signupCredentials.repeatPassword" ng-pattern="regExp" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" password-validator password-pair="$ctrl.signupCredentials.password" type="password" name="repeatPassword" tabindex="5" aria-label="Repeat Password" />
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.repeatPassword.$untouched || $ctrl.signupForm.repeatPassword.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.repeatPassword.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.repeatPassword.$error">
+            <div ng-message="required">Password is required</div>
+            <div ng-message="pattern">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
+            <div ng-message="passwordValid">Password must have at least 8 characters and contain at least one letter, one number, one special character and no spaces!</div>
+            <div ng-message="passwordMatch">Passwords do not match!</div>
+        </div>
+    </md-input-container>
+</div>
 <div layout="row" layout-align="center space-between" layout-margin>
     <span flex></span>
-    <md-button flex="20" class="md-raised md-accent md-hue-1" ng-click="$ctrl.signupForward()" tabindex="6" aria-label="Next Page" ng-disabled="$ctrl.signupForm.$invalid ||  $ctrl.signupForm.$pending">
+    <md-button type="submit" flex="20" class="md-raised md-accent md-hue-1" ng-click="$ctrl.signupForward()" tabindex="6" aria-label="Next Page" ng-disabled="!$ctrl.signupForm.$valid || $ctrl.signupForm.$pending">
         <md-icon md-svg-src="hardware:ic_keyboard_arrow_right_24px" class="md-icon-s48"></md-icon>
     </md-button>
 </div>

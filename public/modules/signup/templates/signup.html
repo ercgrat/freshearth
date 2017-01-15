@@ -8,11 +8,12 @@
 <md-content md-whiteframe="2">
     <fe-card-header>{{ $ctrl.formTitle }}</fe-card-header>
     <md-divider></md-divider>
-    <account-signup ng-show="$ctrl.signupLocation == 0" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()"></account-signup>
-    <type-signup ng-show="$ctrl.signupLocation == 1" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></type-signup>
-    <name-signup ng-show="$ctrl.signupLocation == 2" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></name-signup>
-    <headline-signup ng-show="$ctrl.signupLocation == 3" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></headline-signup>
-    <address-signup ng-show="$ctrl.signupLocation == 4" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></address-signup>
-    <phone-signup ng-show="$ctrl.signupLocation == 5" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></phone-signup>
-    <review-signup ng-show="$ctrl.signupLocation == 6" signup-credentials="$ctrl.signupCredentials" signup-backward="$ctrl.backwardSignupLocation()" submit="$ctrl.submit()"></review-signup>
+    <form name="$ctrl.signupForm" layout-padding novalidate>
+        <account-signup ng-if="$ctrl.signupLocation == 0" signup-refresh="$ctrl.signupRefresh()" signup-form="$ctrl.signupForm" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()"></account-signup>
+        <type-signup ng-if="$ctrl.signupLocation == 1" signup-refresh="$ctrl.signupRefresh()" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></type-signup>
+        <name-signup ng-if="$ctrl.signupLocation == 2" signup-refresh="$ctrl.signupRefresh()" signup-form="$ctrl.signupForm" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></name-signup>
+        <address-signup ng-if="$ctrl.signupLocation == 3" signup-refresh="$ctrl.signupRefresh()" signup-form="$ctrl.signupForm" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></address-signup>
+        <phone-signup ng-if="$ctrl.signupLocation == 4" signup-refresh="$ctrl.signupRefresh()" signup-form="$ctrl.signupForm" signup-validators="$ctrl.signupValidators" signup-credentials="$ctrl.signupCredentials" signup-forward="$ctrl.forwardSignupLocation()" signup-backward="$ctrl.backwardSignupLocation()"></phone-signup>
+        <review-signup ng-if="$ctrl.signupLocation == 5" signup-refresh="$ctrl.signupRefresh()" signup-form="$ctrl.signupForm" signup-credentials="$ctrl.signupCredentials" signup-backward="$ctrl.backwardSignupLocation()" submit="$ctrl.submit()"></review-signup>
+    </form>
 </md-content>

@@ -1,17 +1,23 @@
 function TypeSignupController() {
-    this.producer = {
-        title: 'PRODUCER',
-        detail: 'PRODUCER DETAILS'
-    }
-    this.consumer = {
-        title: 'CONSUMER',
-        detail: 'CONSUMER DETAILS'
-    }
-    this.producerType = function() {
-        this.signupCredentials.businessType = 'producer';
-    };
-    this.consumerType = function() {
-        this.signupCredentials.businessType = 'consumer';
+    var ctrl = this;
+    
+    ctrl.$onInit = function() {
+        ctrl.producer = {
+            title: 'PRODUCER',
+            detail: 'PRODUCER DETAILS'
+        }
+        ctrl.consumer = {
+            title: 'CONSUMER',
+            detail: 'CONSUMER DETAILS'
+        }
+        ctrl.producerType = function() {
+            this.signupCredentials.businessType = 'producer';
+        };
+        ctrl.consumerType = function() {
+            this.signupCredentials.businessType = 'consumer';
+        };
+        
+        ctrl.signupRefresh();
     };
 };
 
@@ -21,6 +27,7 @@ angular.module('FreshEarth').component('typeSignup', {
     bindings: {
         signupForward: '&',
         signupBackward: '&',
+        signupRefresh: '&',
         signupCredentials: '='
     }
 });

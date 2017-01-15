@@ -6,18 +6,17 @@ function userIdentification($q, $http, $state, cookieManager, _) {
     var identity = undefined;
     var business = undefined;
     var authenticated = false;
-    var verified = false;
     var admin = false;
 
     return {
         isIdentityDefined: isIdentityDefined,
         isBusinessDefined: isBusinessDefined,
         isBusinessType: isBusinessType,
-        isAuthenticated: isAuthenticated,
         isLoggedIn: isLoggedIn,
         isLoggedOut: isLoggedOut,
         isAdmin: isAdmin,
         isVerified: isVerified,
+        isNotVerified: isNotVerified,
         //
         getIdentity: getIdentity,
         getBusiness: getBusiness,
@@ -39,13 +38,6 @@ function userIdentification($q, $http, $state, cookieManager, _) {
     };
 
     /*
-     *    User Authentication Status
-     */
-    function isAuthenticated() {
-        return authenticated;
-    }
-
-    /*
      *    User Identity Status
      */
     function isIdentityDefined() {
@@ -63,11 +55,15 @@ function userIdentification($q, $http, $state, cookieManager, _) {
      *    User Logged In
      *
      */
-    function isLoggedIn() {
-        return authenticated ? $q.resolve() : $q.reject();
+    function isLoggedIn(noPromise) {
+        if(noPromise) {
+            return authenticated;
+        } else {
+            return authenticated ? $q.resolve(true) : $q.reject();
+        }
     }
     function isLoggedOut() {
-        return authenticated ? $q.reject() : $q.resolve();
+        return authenticated ? $q.reject() : $q.resolve(true);
     }
     
     /*
@@ -81,7 +77,10 @@ function userIdentification($q, $http, $state, cookieManager, _) {
      *    User Verification Status
      */
     function isVerified() {
-        return verified;
+        return identity.verified ? $q.resolve(true) : $q.reject();
+    }
+    function isNotVerified() {
+        return identity.verified ? $q.reject() : $q.resolve(true);
     }
 
     /*
@@ -94,12 +93,16 @@ function userIdentification($q, $http, $state, cookieManager, _) {
     /*
      *    Get Business Identity
      */
-    function getBusiness() {
-        return $q.resolve(isBusinessDefined()).then(function(response) {
-            return response ? $q.resolve(business) : $q.reject(undefined);
-        }).catch(function(error) {
-            $q.reject(error);
-        });
+    function getBusiness(noPromise) {
+        if(noPromise) {
+            return business;
+        } else {
+            return $q.resolve(isBusinessDefined()).then(function(response) {
+                return response ? $q.resolve(business) : $q.reject(undefined);
+            }).catch(function(error) {
+                $q.reject(error);
+            });
+        }
     }
 
     /*

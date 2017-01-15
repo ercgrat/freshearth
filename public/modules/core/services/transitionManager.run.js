@@ -27,27 +27,22 @@ function transitionManager($q, $transitions, $state, $timeout, _, toastNotificat
     });
 
     $transitions.onError({}, function(transition, state) {
-        console.log(transition.getResolveTokens());
-        if (_.includes(transition.getResolveTokens(), 'isLoggedIn')) {
-            console.log(transition.getResolveValue('isLoggedIn'));
-            if (!transition.getResolveValue('isLoggedIn')) {
-                $state.go('landing').then(function() {
-                    toastNotification.generalInfoMessage('Login required.');
-                });
-            } else {
-                $state.go('dashboard').then(function() {
-                    toastNotification.generalErrorMessage("An error occurred.");
-                });
-            };
-        } else if(_.includes(transition.getResolveTokens(), 'isLoggedOut')) {
-            console.log("navigating to dashboard");
+        var tokens = transition.getResolveTokens();
+        if (_.includes(tokens, 'isLoggedIn') && transition.getResolveValue('isLoggedIn') == undefined) {
+            $state.go('landing').then(function() {
+                toastNotification.generalInfoMessage('Login required.');
+            });
+        } else if(_.includes(tokens, 'isVerified') && transition.getResolveValue('isVerified') == undefined) {
+            $state.go('emailVerify', {
+                token: ""
+            });
+        } else if(_.includes(tokens, 'isLoggedOut')) {
             $state.go('dashboard');
-        } else if(_.includes(transition.getResolveTokens(), 'properTransition')) {
+        } else if(_.includes(tokens, 'properTransition')) {
             $state.go('landing');
         } else {
             $state.go('404');
         }
-        throw new Error("");
     });
 
     /*

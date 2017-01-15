@@ -1,6 +1,9 @@
 function PhoneSignupController() {
-
-
+    var ctrl = this;
+    
+    ctrl.$onInit = function() {
+        ctrl.signupRefresh();
+    };
 };
 
 angular.module('FreshEarth').component('phoneSignup', {
@@ -9,6 +12,7 @@ angular.module('FreshEarth').component('phoneSignup', {
     bindings: {
         signupForward: '&',
         signupBackward: '&',
+        signupRefresh: '&',
         signupCredentials: '=',
         signupValidators: '<'
     }

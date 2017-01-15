@@ -33,19 +33,21 @@ angular.module('FreshEarth').config(function($stateProvider) {
         abstract: true,
         resolve: {
             cookieLogin: function($q, userIdentification) {
-                if(!userIdentification.isLoggedIn()) {
+                return userIdentification.isLoggedIn()
+                .catch(function() {
                     return userIdentification.cookieLogin();
-                }
+                });
             },
             previousState: [
                 "$state",
                 function($state) {
-                    var state = {
-                        name: $state.current.name,
-                        params: $state.params,
-                        path: $state.href($state.current.name, $state.params)
+                    return function($state) {
+                        return {
+                            name: $state.current.name,
+                            params: $state.params,
+                            path: $state.href($state.current.name, $state.params)
+                        }
                     };
-                    return state;
                 }
             ]
         }

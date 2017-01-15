@@ -1,8 +1,13 @@
 function AddressSignupController(_) {
-
-    this.items = loadAll();
-    this.searchText = null;
-    this.itemSearch = itemSearch;
+    var ctrl = this;
+    
+    ctrl.$onInit = function() {
+        ctrl.items = loadAll();
+        ctrl.searchText = null;
+        ctrl.itemSearch = itemSearch;
+        
+        ctrl.signupRefresh();
+    };
 
     function loadAll() {
         var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
@@ -32,7 +37,9 @@ angular.module('FreshEarth').component('addressSignup', {
     bindings: {
         signupForward: '&',
         signupBackward: '&',
+        signupRefresh: '&',
         signupCredentials: '=',
-        signupValidators: '<'
+        signupValidators: '<',
+        signupForm: '<'
     }
 });

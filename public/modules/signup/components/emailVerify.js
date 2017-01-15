@@ -2,8 +2,30 @@
  *  Controller Setup
  */
 
-function EmailVerifyController() {
+function EmailVerifyController($stateParams, api, userIdentification) {
     var ctrl = this;
+    
+    ctrl.$onInit = function() {
+        if($stateParams.token.length == 0) {
+            ctrl.login = true;
+        } else {
+            api.put('/auth/verify/' + $stateParams.token, null, false, {})
+            .then(function() {
+                ctrl.success = true;
+                userIdentification.logout();
+            })
+            .catch(function(error) {
+                ctrl.failure = true;
+            });
+        }
+    };
+    
+    ctrl.resend = function() {
+        api.get('/auth/verify/resend', null, true)
+        .then(function() {
+            ctrl.sent = true;
+        });
+    };
 };
 
 /*
@@ -15,7 +37,7 @@ angular.module('FreshEarth').component('emailVerify', {
     controller: EmailVerifyController,
     bindings: {
         userIdentification: '<',
-        previousState: '<'
+        api: '<'
     }
 });
 
@@ -25,23 +47,18 @@ angular.module('FreshEarth').component('emailVerify', {
 
 angular.module('FreshEarth').config(function($stateProvider) {
     $stateProvider.state('emailVerify', {
-        url: '/welcome',
+        url: '/verify/:token',
         parent: 'main',
-        params: {
-            email: null
-        },
         component: 'emailVerify',
         resolve: {
             userIdentification: 'userIdentification',
-            properTransition: [
-                '_',
-                '$q',
-                'previousState',
-                function(_, previousState) {
-                    console.log(previousState);
-                    return (previousState.name == 'signup' && !_.isNil(previousState.params.email)) ? true : $q.reject();
-                }
-            ]
+            isLoggedIn: function(userIdentification) {
+                return userIdentification.isLoggedIn();
+            },
+            isNotVerified: function(userIdentification) {
+                return userIdentification.isNotVerified();
+            },
+            api: 'api'
         }
     });
 });

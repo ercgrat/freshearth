@@ -19,6 +19,9 @@ angular.module('FreshEarth').config(function($stateProvider) {
         resolve: {
             isLoggedIn: function(userIdentification) {
                 return userIdentification.isLoggedIn();
+            },
+            isVerified: function(userIdentification) {
+                return userIdentification.isVerified();
             }
         }
     });

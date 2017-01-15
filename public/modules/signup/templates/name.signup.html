@@ -5,31 +5,42 @@
   Component: Name.Signup
 
   Tabindex: 10-12
- -->
-<form name="$ctrl.signupForm" novalidate layout-padding>
-    <div layout="column">
-        <md-input-container>
-            <label>Business Name</label>
-            <input required business-name-validator md-maxlength="$ctrl.signupValidators.businessName.maxlength" ng-minlength="$ctrl.signupValidators.businessName.minlength" ng-maxlength="$ctrl.signupValidators.businessName.maxlength" ng-model="$ctrl.signupCredentials.businessName"
-                ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="text" name="businessName" tabindex="10" aria-label="Business Name" />
-            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.businessName.$untouched || $ctrl.signupForm.businessName.$valid">
-                <div class="ng-message-hint">{{ $ctrl.signupValidators.businessName.hint }}</div>
-            </div>
-            <div ng-messages="$ctrl.signupForm.businessName.$error">
-                <div ng-message="required">Business Name is required</div>
-                <div ng-message="minlength">Business Name must be at least {{ $ctrl.signupValidators.businessName.minlength }} characters</div>
-                <div ng-message="maxlength">Business Name must be less than {{ $ctrl.signupValidators.businessName.maxlength }} characters</div>
-                <div ng-message="businessNameAvailable">This Business Name is already registered with Cropolis!</div>
-            </div>
-        </md-input-container>
-    </div>
-</form>
+-->
+<div layout="column">
+    <md-input-container>
+        <label>Business Name</label>
+        <input required business-name-validator md-maxlength="$ctrl.signupValidators.businessName.maxlength" ng-minlength="$ctrl.signupValidators.businessName.minlength" ng-maxlength="$ctrl.signupValidators.businessName.maxlength" ng-model="$ctrl.signupCredentials.businessName"
+            ng-model-options="{ debounce: { 'default': 500, 'blur': 0 }}" type="text" name="businessName" tabindex="10" aria-label="Business Name" />
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.businessName.$untouched || $ctrl.signupForm.businessName.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.businessName.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.businessName.$error">
+            <div ng-message="required">Business Name is required</div>
+            <div ng-message="minlength">Business Name must be at least {{ $ctrl.signupValidators.businessName.minlength }} characters</div>
+            <div ng-message="maxlength">Business Name must be less than {{ $ctrl.signupValidators.businessName.maxlength }} characters</div>
+            <div ng-message="businessNameAvailable">This Business Name is already registered with Fresh Earth!</div>
+        </div>
+    </md-input-container>
+    <md-input-container>
+        <label>Business Headline</label>
+        <input required ng-minlength="$ctrl.signupValidators.businessHeadline.minlength" md-maxlength="$ctrl.signupValidators.businessHeadline.maxlength" ng-model="$ctrl.signupCredentials.businessHeadline"
+            type="text" name="businessHeadline" tabindex="11" aria-label="Business Headline"></textarea>
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.businessHeadline.$untouched || $ctrl.signupForm.businessHeadline.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.businessHeadline.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.businessHeadline.$error">
+            <div ng-message="required">Business Headline is required</div>
+            <div ng-message="minlength">Business Headline must be at least {{ $ctrl.signupValidators.businessHeadline.minlength }} characters</div>
+            <div ng-message="maxlength">Business Headline must be less than {{ $ctrl.signupValidators.businessHeadline.maxlength }} characters</div>
+        </div>
+    </md-input-container>
+</div>
 <div layout="row" layout-align="center space-between" layout-margin>
     <md-button flex="20" class="md-flat md-accent md-hue-1" ng-click="$ctrl.signupBackward()">
-        <md-icon md-svg-src="hardware:ic_keyboard_arrow_left_24px" class="md-icon-s48" tabindex="12" aria-label="Back Page"></md-icon>
+        <md-icon md-svg-src="hardware:ic_keyboard_arrow_left_24px" class="md-icon-s48" tabindex="13" aria-label="Back Page"></md-icon>
     </md-button>
     <span flex></span>
-    <md-button flex="20" class="md-raised md-accent md-hue-1" ng-click="$ctrl.signupForward()" tabindex="11" ng-disabled="$ctrl.signupForm.$invalid || $ctrl.signupForm.$pending">
+    <md-button type="submit" flex="20" class="md-raised md-accent md-hue-1" ng-click="$ctrl.signupForward()" tabindex="12" ng-disabled="!$ctrl.signupForm.$valid || $ctrl.signupForm.$pending">
         <md-icon md-svg-src="hardware:ic_keyboard_arrow_right_24px" class="md-icon-s48" aria-label="Next Page"></md-icon>
     </md-button>
 </div>

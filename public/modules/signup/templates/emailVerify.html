@@ -1,2 +1,25 @@
-<h1>Welcome to Fresh Earth!</h1>
-<p>An e-mail has been sent to {{$ctrl.email}}. Note that this link will expire after 24 hours.</p>
+<md-content md-whiteframe="2" layout-padding>
+    <div ng-if="$ctrl.success">
+        <h1>Your account has been verified.</h1>
+        <p>Get started working toward a fresh Earth!</p>
+        <div flex layout="column" layout-align="start center">
+            <md-button ui-sref="dashboard" class="md-accent md-raised md-hue-1 hpad-10" aria-label="Get started">Get Started</md-button>
+        </div>
+    </div>
+    <div ng-if="$ctrl.failure">
+        <h1>We had trouble verifying your account.</h1>
+        <p>Your link may have expired. Click the button below to send another verification e-mail. E-mail <span class="fe-highlighted">support@freshearth.io</span> if you are encountering issues.</p>
+        <div flex layout="column" layout-align="start center">
+            <md-button ng-click="$ctrl.resend()" ng-if="!$ctrl.sent" class="md-accent md-raised md-hue-1 hpad-10" aria-label="Send again">Send again</md-button>
+            <p ng-if="$ctrl.sent" class="md-primary fe-highlighted">Sent!</p>
+        </div>
+    </div>
+    <div ng-if="$ctrl.login">
+        <h1>Looks like your account isn't verified.</h1>
+        <p>Click the button below to send another verification e-mail. E-mail <span class="fe-highlighted">support@freshearth.io</span> if you are encountering issues.</p>
+        <div flex layout="column" layout-align="start center">
+            <md-button ng-click="$ctrl.resend()" ng-if="!$ctrl.sent" class="md-accent md-raised md-hue-1 hpad-10" aria-label="Send again">Send again</md-button>
+            <p ng-if="$ctrl.sent" class="md-primary fe-highlighted">Sent!</p>
+        </div>
+    </div>
+</md-content>

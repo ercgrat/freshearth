@@ -81,3 +81,15 @@ fe-card-header div {
 fe-card-header h3 {
     color: white;
 }
+
+.fe-highlighted {
+    font-weight: bold;
+}
+
+.fe-highlighted.md-primary {
+    color: rgb(76,175,80);
+}
+
+.fe-highlighted.md-accent {
+    color: rgb(255,145,0);
+}

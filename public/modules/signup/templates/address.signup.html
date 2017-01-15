@@ -6,64 +6,62 @@
 
   Tabindex: 16-21
  -->
-<form name="$ctrl.signupForm" novalidate layout-padding>
-    <div layout="column">
-        <md-input-container>
-            <label>Street Address</label>
-            <input required ng-model="$ctrl.signupCredentials.businessAddress.street" type="text" name="streetAddress" tabindex="16" aria-label="Street Address" />
-            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.streetAddress.$untouched || $ctrl.signupForm.streetAddress.$valid">
-                <div class="ng-message-hint">{{ $ctrl.signupValidators.businessAddress.street.hint }}</div>
-            </div>
-            <div ng-messages="$ctrl.signupForm.streetAddress.$error">
-                <div ng-message="required">Street Address is required</div>
-            </div>
-        </md-input-container>
-        <md-input-container>
-            <label>City</label>
-            <input required ng-model="$ctrl.signupCredentials.businessAddress.city" type="text" name="cityAddress" tabindex="17" aria-label="City" />
-            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.cityAddress.$untouched || $ctrl.signupForm.cityAddress.$valid">
-                <div class="ng-message-hint">{{ $ctrl.signupValidators.businessAddress.city.hint }}</div>
-            </div>
-            <div ng-messages="$ctrl.signupForm.cityAddress.$error">
-                <div ng-message="required">City is required</div>
-            </div>
-        </md-input-container>
+<div layout="column">
+    <md-input-container>
+        <label>Street Address</label>
+        <input required ng-model="$ctrl.signupCredentials.businessAddress.street" type="text" name="streetAddress" tabindex="16" aria-label="Street Address" />
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.streetAddress.$untouched || $ctrl.signupForm.streetAddress.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.businessAddress.street.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.streetAddress.$error">
+            <div ng-message="required">Street Address is required</div>
+        </div>
+    </md-input-container>
+    <md-input-container>
+        <label>City</label>
+        <input required ng-model="$ctrl.signupCredentials.businessAddress.city" type="text" name="cityAddress" tabindex="17" aria-label="City" />
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.cityAddress.$untouched || $ctrl.signupForm.cityAddress.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.businessAddress.city.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.cityAddress.$error">
+            <div ng-message="required">City is required</div>
+        </div>
+    </md-input-container>
 
-        <md-autocomplete required md-input-name="stateAddress" md-selected-item="$ctrl.signupCredentials.businessAddress.state" md-search-text="$ctrl.searchText" md-items="item in $ctrl.itemSearch($ctrl.searchText)" md-item-text="item" md-require-match
-            md-floating-label="State" tabindex="18" aria-label="State">
-            <md-item-template>
-                <span md-highlight-text="$ctrl.searchText">{{item}}</span>
-            </md-item-template>
-            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.stateAddress.$untouched || $ctrl.signupForm.stateAddress.$valid">
-                <div class="ng-message-hint">{{ $ctrl.signupValidators.businessAddress.state.hint }}</div>
-            </div>
-            <div ng-messages="$ctrl.signupForm.stateAddress.$error">
-                <div ng-message="required">State is required</div>
-                <div ng-message="md-require-match">Please select a supported State</div>
-            </div>
-        </md-autocomplete>
+    <md-autocomplete required md-input-name="stateAddress" md-selected-item="$ctrl.signupCredentials.businessAddress.state" md-search-text="$ctrl.searchText" md-items="item in $ctrl.itemSearch($ctrl.searchText)" md-item-text="item" md-require-match
+        md-floating-label="State" tabindex="18" aria-label="State">
+        <md-item-template>
+            <span md-highlight-text="$ctrl.searchText">{{item}}</span>
+        </md-item-template>
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.stateAddress.$untouched || $ctrl.signupForm.stateAddress.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.businessAddress.state.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.stateAddress.$error">
+            <div ng-message="required">State is required</div>
+            <div ng-message="md-require-match">Please select a supported State</div>
+        </div>
+    </md-autocomplete>
 
-        <md-input-container>
-            <label>Zipcode</label>
-            <input required ng-model="$ctrl.signupCredentials.businessAddress.zip" ng-minlength="$ctrl.signupValidators.businessAddress.zip.minlength" ng-maxlength="$ctrl.signupValidators.businessAddress.zip.maxlength" type="number" name="zipAddress" tabindex="19"
-                aria-label="Zipcode" />
-            <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.zipAddress.$untouched || $ctrl.signupForm.zipAddress.$valid">
-                <div class="ng-message-hint">{{ $ctrl.signupValidators.businessAddress.zip.hint }}</div>
-            </div>
-            <div ng-messages="$ctrl.signupForm.zipAddress.$error">
-                <div ng-message="required">Zipcode is required</div>
-                <div ng-message="minlength">Zipcode must be at least {{ $ctrl.signupValidators.businessAddress.zip.minlength }} characters</div>
-                <div ng-message="maxlength">Zipcode must be less than {{ $ctrl.signupValidators.businessAddress.zip.maxlength }} characters</div>
-            </div>
-        </md-input-container>
-    </div>
-</form>
+    <md-input-container>
+        <label>Zipcode</label>
+        <input required ng-model="$ctrl.signupCredentials.businessAddress.zip" ng-minlength="$ctrl.signupValidators.businessAddress.zip.minlength" ng-maxlength="$ctrl.signupValidators.businessAddress.zip.maxlength" type="number" name="zipAddress" tabindex="19"
+            aria-label="Zipcode" />
+        <div hide-sm class="ng-messages-hints" ng-show="$ctrl.signupForm.zipAddress.$untouched || $ctrl.signupForm.zipAddress.$valid">
+            <div class="ng-message-hint">{{ $ctrl.signupValidators.businessAddress.zip.hint }}</div>
+        </div>
+        <div ng-messages="$ctrl.signupForm.zipAddress.$error">
+            <div ng-message="required">Zipcode is required</div>
+            <div ng-message="minlength">Zipcode must be at least {{ $ctrl.signupValidators.businessAddress.zip.minlength }} characters</div>
+            <div ng-message="maxlength">Zipcode must be less than {{ $ctrl.signupValidators.businessAddress.zip.maxlength }} characters</div>
+        </div>
+    </md-input-container>
+</div>
 <div layout="row" layout-align="center space-between" layout-margin>
     <md-button flex="20" class="md-flat md-accent md-hue-1" ng-click="$ctrl.signupBackward()">
         <md-icon md-svg-src="hardware:ic_keyboard_arrow_left_24px" class="md-icon-s48" tabindex="21" aria-label="Back Page"></md-icon>
     </md-button>
     <span flex></span>
-    <md-button flex="20" class="md-raised md-accent md-hue-1" ng-click="$ctrl.signupForward()" tabindex="20" ng-disabled="$ctrl.signupForm.$invalid || $ctrl.signupForm.$pending">
+    <md-button type="submit" flex="20" class="md-raised md-accent md-hue-1" ng-click="$ctrl.signupForward()" tabindex="20" ng-disabled="$ctrl.signupForm.$invalid || $ctrl.signupForm.$pending">
         <md-icon md-svg-src="hardware:ic_keyboard_arrow_right_24px" class="md-icon-s48" aria-label="Next Page"></md-icon>
     </md-button>
 </div>
